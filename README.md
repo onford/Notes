@@ -17,5 +17,3 @@ $4$. Circuit Theory\
 \
 Any advice, please contact me. 3Q\
 \
-Github的markdown preview不知道为什么感觉总是炸，为保证良好观感请前往本仓库的静态网页。\
-<a href="https://onford.github.io/onford/" target="new">点击这里</a>
