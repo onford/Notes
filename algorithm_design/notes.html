@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>notes.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<style>
+    h1,h2{
+        border-bottom : none;
+        font-family: "Times New Roman","宋体";
+    }
+    p,div{
+        font-family: "Times New Roman","宋体";
+        font-size:17px;
+    }
+    bw{
+        font-family: "Times New Roman","仿宋";
+        font-size:17px;
+    }
+    st{
+        font-family:"Times New Roman","宋体";
+        color: red;
+    }
+    blockquote{
+        font-family:"Times New Roman","仿宋";
+        font-size:17px;
+        border-left: 5px solid #ccc;
+    }
+    table,th,td{
+        font-size:17px;
+        font-family:"Times New Roman","宋体";
+        border: 1px solid;
+        text-align:center;
+    }
+    caption{
+        font-family:"Times New Roman","黑体";
+        font-size:17px;
+    }
+    img{
+        margin: 0 auto;
+        left:50%;
+        right:50%;
+        width: 30%;
+    }
+</style>
+<h1 id="%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0"><strong>算法设计与分析笔记</strong></h1>
+<p><bw>wr按：<br>
+算法是计算机专业的重要核心课。这门课使用的教材是第三版算法导论黑皮书，由于课程并没有涉及到书中全部的张杰，笔记只是对其中少数几个部分的理解。<br>
+附：☞<a href="https://walkccc.me/CLRS/" target="new"><font color="orange">算法导论第三版参考答案（English Ver.）</font></a><br>
+<s>这个答案对于很多题目都没有给出完整回答，参考一下就好</s></bw></p>
+<h2 id="part1-%E5%88%86%E6%B2%BB%E7%AD%96%E7%95%A5">$Part1$  分治策略</h2>
+<p>  主方法用来求解递归式，获得一些<st>渐进紧确界</st>：<br>
+  <strong>主定理</strong> 令$a\geq 1$和$b &gt; 1$是常数，$f(n)$是一个函数，$T(n)$是定义在非负整数上的递归式
+$$T(n)=aT(n/b)+f(n)\tag{1.1}$$</p>
+<p>  其中我们将$n/b$解释为$\lfloor n/b\rfloor$或$\lceil n/b\rceil$.那么：<br>
+  1.若对于某个常数$\varepsilon &gt; 0$有$f(n)=O(n^{\log _b a-\varepsilon})$，则$ T(n)=\Theta(n^{\log _b a})$.<br>
+  2.若$f(n)=\Theta(n^{\log _ ba})$，则$T(n)=(n^{\log _ ba}\lg n)$.<br>
+  3.若对于某个常数$\varepsilon &gt; 0$有$f(n)=\Omega(n^{\log _b a+\varepsilon})$，且对于某个常数$c &lt; 1$和足够大的$n$有$af(n/b)\leq cf(n)$，则$T(n)=\Theta(f(n))$.</p>
+<h2 id="part2-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B8%8E%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95">$Part2$ 动态规划与贪心算法</h2>
+<p>  动态规划的两个核心：<strong>最优子结构性</strong>的证明，<strong>状态转移方程</strong>的建立。动态规划运行的核心是<strong>最优子结构性</strong>，证明了这个底层逻辑，动态规划算法就是正确的。</p>
+<blockquote>
+&emsp;&emsp;实际上，课程所讲述的动态规划全部属于<strong>区间DP</strong>，动态规划还有树形DP、状态压缩DP、期望DP等各种各样的形式。使用动态规划算法解决的经典问题：<br>
+&emsp;&emsp;一维DP：钢条切割问题。<br>
+&emsp;&emsp;二维DP：矩阵链乘法问题、最长公共子序列（LCS，Longest Common Subsequence）问题，最优二叉搜索树问题，0-1背包问题。<br>
+&emsp;&emsp;DP维度，就是开辟的DP数组的维数。可能要使用三维DP的问题：<a href="http://poj.org/problem?id=1185" target="new"><font color="orange">POJ 1185</font></a>。关于这一方面的内容，在这里部署一个<a href="https://blog.csdn.net/weixin_72137075/category_12581277.html" target="new"><font color="orange">动态规划学习</font></a>。
+</blockquote>
+<p>  贪心算法，在某种程度上可以看做是动态规划的一个特例。动态规划更偏向于穷举，每条路都试一下；贪心算法则是绕开了这种穷举，抄一条近路直接到达目的地，所以很多情况下并不能保证最优解。<br>
+  贪心算法运行的核心是<strong>贪心选择性质</strong>——可以通过做出局部最优解（贪心）来构造全局最优解。只要你证明了这个底层逻辑，贪心算法的正确性一般就能够保证。</p>
+<blockquote>
+&emsp;&emsp;Huffman树的生成原理，使用了贪心算法：每次调两个最小的结点合并，直到只剩下一个节点，它就是Huffman树的根节点。<br>
+&emsp;&emsp;图论中也有很多算法的底层逻辑是贪心算法。比如最小生成树的Prim算法和Kruskal算法，单源最短路径的Dijkstra算法。
+</blockquote>
+<h2 id="part3-%E5%9F%BA%E6%9C%AC%E5%9B%BE%E7%AE%97%E6%B3%95">$Part3$ 基本图算法</h2>
+<p><strong>一、最小生成树</strong><br>
+  最小生成树的概念，是针对于无向连通图的。有两个贪心算法：<br>
+  <strong>Prim算法</strong>：从一个源点$S$开始。在不形成环的情况下，每次选择连接$S$所在的连通分支的边中，权重最小的那个。直到只剩下一个连通分支。<br>
+  <strong>Kruskal算法</strong>：在不形成环的情况下，从所有的边中选择权重最小的，直到只剩下一个连通分支。<br>
+<strong>二、单源最短路径</strong><br>
+  <strong>Bellman-Ford算法</strong>：如果图$G$有$n$个节点，在初始化之后，执行$n-1$轮松弛。每轮松弛都是按照特定的顺序松弛$G$中所有的边。根据操作后结点的$d$值是否满足三角不等式，返回bool值，代表该图中最短路径是否能够定义。</p>
+<blockquote>
+&emsp;&emsp;初始化操作（后面的Dijkstra也是）：对所有的结点$v\in V$，置$v.d=\infty\ \mathrm{and}\ v.\pi=\mathrm{NIL}$.然后置$s.d=0$，其中$s$是源节点。<br>
+&emsp;&emsp;Bellman-Ford返回的bool值，也代表“图$G$中是否含有可以由$s$到达的负权重回路”。一旦返回True，那么对于所有的结点$v\in V$，都有$\delta(s,v)=v.d$.<br>
+&emsp;&emsp;在手动运行Bellman-Ford算法的时候，有两种松弛方式：<br>
+&emsp;&emsp;（1）用每轮松弛操作前的$d$值进行松弛，是一种“并行松弛”。每轮松弛后的结果与边松弛的先后顺序无关，我们可以按照任意的顺序对这些边进行松弛。<br>
+&emsp;&emsp;（2）每次松弛时采用最新的$d$值，是一种“串行松弛”。这个依赖于每条边的松弛顺序，也就是说，松弛顺序不同，一轮松弛得到的结果也会有区别。<br>
+&emsp;&emsp;比如我在第一次松弛的时候，得到了$u.d=6$，$v.d=7$，图中有$w(u,v)=3$.在进行第二轮松弛的时候，$(u,v)$被松弛之前，先更新了$u.d =2$.如果是采取松弛方式（2），在后续对$(u,v)$进行松弛的时候，$v.d$会被更新为$2+3=5$；如果是采取松弛方式（1），在后续对$(u,v)$进行松弛的时候，使用的$u.d$仍然是第一轮松弛得到的$6$，所以$v.d$不会改变。<br>
+&emsp;&emsp;Bellman-Ford实际的运行方式是松弛方式（2），但不理解有的题目要我们用方式（1）。不过，虽然方式（2）每轮松弛的结果依赖边松弛的顺序，但是在算法返回True的情况下，最终的结果和这个松弛顺序是无关的——最终$v.d$都会收敛到$\delta(s,v)$.
+</blockquote>
+<p>  算法的优点是<st>可以处理含有负权重边的图</st>，缺点是时间复杂度$O(VE)$有点大。简单图的边数$E$可以达到$O(V^2)$的规模，这个时候Bellman-Ford算法的时间复杂度就是$O(n^3)$.<br>
+  <strong>Dijkstra算法</strong>：维持一个集合$S$.在初始化之后，不断重复这样的操作：<br>
+  1.对于不在$S$中的结点，找到$d$值最小的那个$v$加入$S$.<br>
+  2.松弛所有从$v$发出的边。<br>
+  最后，所有的结点都会进入$S$.此时算法终止。Dijkstra算法在时间复杂度上优于Bellman-Ford算法， 不经优化就能达到$O(n^2)$的复杂度，但是<st>不能处理含有负权重边的图</st>。<br>
+  <strong>SPFA算法</strong>：维持一个队列$Q$，初始时有且只有源节点$s$.重复这样的操作：每次从$Q$中出队队首节点$v$，松弛所有从$v$发出的边，在松弛中$d$值改变的结点都入队。直到$Q$空时，算法终止。它的优点是<st>可以处理含有负权重边的图</st>，并且时间复杂度也显著优于Bellman-Ford算法。但是貌似泛用性不强，容易被卡。<br>
+<strong>三、多源最短路径</strong><br>
+  有一种自然的想法，对从$u$到$v$的路径长度$l$进行动态规划：求出所有节点对在路径长度不大于$l=l _ 0$时的最短路径，就可以自底向上地推导所有结点对在路径长度不大于$l=l _ 0+1$时的最短路径。这种动态规划的时间复杂度是$O(n^3\lg n)$.<br>
+  <strong>Floyd-Warshall算法</strong>也是一个动态规划的算法，但思路是先求出所有结点对在经过中间结点$v _ c$编号$c\in [1,k]$时的最短路径，再自底向上地推导出所有节点在经过中间节点编号$c\in [1,k+1]$时的最短路径。时间复杂度可以降至$O(n^3)$.</p>
+<blockquote>
+&emsp;&emsp;Floy-Warshall算法可以看作是三维DP。数组$dp[i][j][k]$表示在中间节点编号$c\in [1,k]$的时候，从结点$i$结点到$j$的最短距离。状态转移方程是：
+$$dp[i][j][k]=\min(dp[i][j][k-1],dp[i][k][k-1]+dp[k][j][k-1])\tag{3.1}$$
+&emsp;&emsp;由于状态转移方程中$dp[…][…][k]$只和$dp[…][…][k-1]$有关，其实可以把$dp$数组的第三维压掉，变成二维DP.
+</blockquote>
+<p>  <strong>Johnson算法</strong>的设计还是比较巧妙的，它的核心思想就是在确保最短路径不变的情况下，把图$G$的边权$w$转化成非负的权重$\hat w$，让Dijkstra能跑起来。</p>
+<blockquote>
+&emsp;&emsp;Johnson算法引入一个外部节点$s$加入$V$中，同时向$E$中添加$n$条由$s$发出、到$V$中的结点的边，生成图$G'$.在图$G'$中以$s$为源点运行Bellman-Ford算法，给每个节点标记一个$h$值$h(v)=\delta(s,v)$.<br>
+&emsp;&emsp;如果Bellman-Ford算法返回True，说明图$G$不含负权重回路，以$\hat w(u,v)=w(u,v)+h(u)-h(v)$运行Dijkstra算法，能够得到各结点对之间的最短距离$\hat\delta(u,v)$.修正后的$\delta(u,v)=\hat\delta(u,v)-h(u)+h(v)$就是我们需要求的结果。<br>
+&emsp;&emsp;Johnson算法适用于稀疏图，究其原因还是Bellman-Ford在非稀疏图上跑起来很需要时间。
+</blockquote>
+<h2 id="part4-%E5%9B%BE%E6%A0%91%E5%91%A8%E6%B8%B8">$Part4$ 图树周游</h2>
+<p>  关于图树周游，其实无非是深搜、广搜、按层遍历（树）等一些基本方法。课程课件中涉及到了一个求连通图$G$关节点的方法：</p>
+<blockquote>
+&emsp;&emsp;关节点，就是割点。对于连通图$G$，其连通分支$p(G)=1$.割点指的就是满足$p(G-\{v\}) > 1$的这些点$v$.
+</blockquote>
+<p>  对图$G$进行深度优先遍历，能够得到一颗深度优先生成树$T$，$T$中包含了$G$中所有的顶点和部分边。在图$G$中，但是不在生成树$T$中的边称为<st>逆边</st>。</p>
+<blockquote>
+&emsp;&emsp;使用深度优先遍历的好处是，图$G$中不存在这样一条边$(u,v)$，使得在$T$中$u$和$v$没有祖孙关系（互相不是对方的祖先），也可以说是图$G$中不含相对$T$的<strong>交叉边</strong>。如果是使用广度优先生成树$T$，$G$就可能存在相对$T$的交叉边。
+</blockquote>
+<p>  图$G$中每一个结点$v$都有<strong>深度优先数</strong>$\mathrm{DFN}(v)$，表示结点$v$是深度优先遍历图$G$时第几个被遍历到的结点。每个节点$v$还有一个<strong>最低深度优先数</strong>$L(v)$，它的定义是：
+$$L(v)=\min \lbrace \mathrm{DFN}(v),\min\lbrace L(w)|w是v的儿子\rbrace, \min\lbrace \mathrm{DFN}(w)|(v,w)是一条逆边 \rbrace \rbrace \tag{4.1}$$</p>
+<p>  直观地，$L(v)$就是$v$通过一条子孙路径且至多后随一条逆边所可能到达的最低深度优先数。判定割点的规则是，在深度优先生成树$T$中，根节点如果至少有两个儿子就是割点，非根节点$v$如果存在一个儿子$w$满足$L(w)\geq \mathrm{DFN}(v)$就是割点。</p>
+<p>  一开始我觉得这种方法很高级，后来的学习过程中知道了这种方法原来是强大的<a href="https://zhuanlan.zhihu.com/p/660554775" target="new"><font color="orange">Tarjan算法</font></a>的一个子方法，关于Tarjan算法的学习正在进行中。</p>
+<p>$\boxed{\mathbb{The\ End.}}$</p>
+
+</body>
+</html>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });</script>
