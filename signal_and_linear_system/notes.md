@@ -131,15 +131,15 @@ $$u(t) *v(t)=\delta(t) *\int_{-\infty}^t\left[\mathrm e^{-x}-\cfrac{1}{(x+1)^2}\
 ## $Chapter3$&emsp;连续信号的正交分解
 **一、傅里叶级数**\
 &emsp;&emsp;对于真实信号函数 $f(t)$ 来说，一般都可以分解为傅里叶级数：
-$$f(t)=\cfrac{a _0}{2}+\sum_{n=1}^\infty(a _n\cos n\varOmega t+b _n\sin n\varOmega t)\tag{3.1}$$
+$$f(t)=\cfrac{a _0}{2}+\sum _{n=1}^\infty(a _n\cos n\varOmega t+b _n\sin n\varOmega t)\tag{3.1}$$
 
 <blockquote>
 &emsp;&emsp;根据 Dirichlet 条件，上式中的 “$=$” 写作 “$\sim$” 更严谨，因为可能会存在一些离散的点，等式左右两边在这些点上的取值不相等。但是毕竟是个别离散的点，工程上可以直接忽略，所以直接使用了 “$=$”。
 </blockquote>
 
 &emsp;&emsp;其中，系数 $a _n,b _n$ 的求解公式是：
-$$\begin{cases}\displaystyle a _n=\cfrac{2}{T}\int_{t _1}^{t _1+T}f(t)\cos n\varOmega t\mathrm dt\\
-\displaystyle b _n=\cfrac{2}{T}\int_{t _1}^{t _1+T}f(t)\sin n\varOmega t\mathrm dt\end{cases}\tag{3.2}$$
+$$\begin{cases}\displaystyle a _n=\cfrac{2}{T}\int _{t _1}^{t _1+T}f(t)\cos n\varOmega t\mathrm dt\\\\
+\displaystyle b _n=\cfrac{2}{T}\int _{t _1}^{t _1+T}f(t)\sin n\varOmega t\mathrm dt\end{cases}\tag{3.2}$$
 
 &emsp;&emsp;其中有 $T=2\pi/\varOmega$。显然，式 $(3.2)$ 也可以使用配角公式，写作式 $(3.3)$ 所示：
 $$f(t)=\cfrac{a _0}{2}+\sum _{n=1}^\infty A_n\cos(n\varOmega t+\varphi _n)\tag{3.3}$$
