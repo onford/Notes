@@ -432,6 +432,65 @@ code {
 &emsp;&emsp;将原式中的 $t$ 换成 $t-t _0$ 可得 $r(t-t _0)=e(1-t+t _0)$，记作式 $(1)$。所以对于一个激励 $e(t-t _0)$，根据原式，它产生的响应应该是 $e(1-t+t _0)$，也即 $r(t-t _0)$。所以系统具备时不变性。<br>
 &emsp;&emsp;这种错误做法看起来有点像是循环论证，但是它却能够正确地判断 $r(t)=\varepsilon(t)e(t)$ 不具备时不变性。所以花了一个下午的时间总结出时不变性的正确判定方法，并且特意强调，以免以后再落入这个陷阱。
 </blockquote>
+<p><strong>二、各种各样的响应</strong><br>
+<strong>1.古典法</strong><br>
+  古典法依据微分方程的数学解形式来定义系统的不同响应。一个 $n$ 阶线性系统的微分方程可以用下面的式子来表示：
+$$\cfrac{\mathrm d^nr}{\mathrm dt^n}+a _{n-1}\cfrac{\mathrm d^{n-1}r}{\mathrm dt^{n-1}}+\cdots+a _1\cfrac{\mathrm dr}{\mathrm dt}+a _0r=b _m\cfrac{\mathrm d^me}{\mathrm dt^m}+b _{m-1}\cfrac{\mathrm d^{m-1}e}{\mathrm dt^{m-1}}+b _1\cfrac{\mathrm de}{\mathrm dt}+b _0e\tag{1.1}$$</p>
+<p>  这个微分方程对应的齐次方程的通解（通过初值条件确定待定系数），被称作系统的<strong>自然响应（自由响应）</strong>，记作 $r _h(t)$。微分方程对应的特解（也通过初值条件确定了待定系数）被称作系统的<strong>受迫响应</strong>，记作 $r _p(t)$。<br>
+<strong>2.近代时域分析法</strong><br>
+  近代的时域分析法就把响应分为<strong>零输入响应</strong> $r _{zi}(t)$ 和<strong>零状态响应</strong> $r _{zs}(t)$。这一点同电路理论中的概念。</p>
+<p>  这些响应与全响应 $r(t)$ 之间的关系是：
+$$r _h(t)=r _{zi}(t)+r _{zs}(t)=r _h(t)+r _p(t)\tag{1.2}$$</p>
+<h2 id="chapter2-%E8%BF%9E%E7%BB%AD%E6%97%B6%E9%97%B4%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%97%B6%E5%9F%9F%E5%88%86%E6%9E%90">$Chapter2$ 连续时间系统的时域分析</h2>
+<p><strong>一、卷积积分</strong><br>
+  这一章首先证明了下面的公式：
+$$f(t)=\int _0^tf(\tau)\delta(t-\tau)\mathrm d\tau=\int _{-\infty}^{+\infty}f(\tau)\delta(t-\tau)\mathrm d\tau\tag{2.1}$$</p>
+<p>  这说明一个信号可以分解成多个多个冲击性信号的积分。<br>
+  记一个系统的单位冲击响应为 $h(t)$ ，即 $\delta(t)\rightarrow h(t)$。由于线性系统的时不变性、齐次性和叠加性，可得 $\displaystyle\int _0^te(t)\delta(t-\tau)\mathrm d\tau\rightarrow \int _0^te(t)h(t-\tau)\mathrm d\tau$。<br>
+  因此，激励 $e(t)$ 时，系统的响应为
+$$r(t) = \int _0^te(t)h(t-\tau)\mathrm d\tau\tag{2.2}$$</p>
+<p>  式 $(2.2)$ 就是<strong>卷积积分</strong>。</p>
+<blockquote>
+&emsp;&emsp;<strong>冲激响应</strong>是激励为 $\delta(t)$ 的<strong>零状态响应</strong>。如果可以知道一个系统的单位冲击响应 $h(t)$，根据式 $(2.2)$ 可以直接从激励得到响应，而不需要知道系统的其它细节。
+</blockquote>
+<p><strong>二、卷积的性质</strong><br>
+  卷积运算是一种抽象出来的运算，它的定义是：
+$$f(t)*g(t)=\int_{-\infty}^{+\infty}f(\tau)g(t-\tau)\mathrm d\tau\tag{2.3}$$</p>
+<p>  和很多运算类似，卷积具有<strong>交换律</strong>、对加减法的<strong>分配律</strong>以及<strong>结合律</strong>。对于卷积结果进行微积分运算，有下列结论成立：
+$$\cfrac{\mathrm d}{\mathrm dt}[u(t) *v(t)]=u(t) *\cfrac{\mathrm dv(t)}{\mathrm dt}=\cfrac{\mathrm du(t)}{\mathrm dt} *v(t)\tag{2.4}$$</p>
+<p>$$\int_{-\infty}^t[u(x) *v(x)]\mathrm dx=u(t) *\left[\int_{-\infty}^tv(x)\mathrm dx\right]=\left[\int_{-\infty}^tu(x)\mathrm dx\right] *v(t)\tag{2.5}$$</p>
+<p>  上面的式子当然可以推广到多个函数卷积的导数/积分，以及卷积结果的多阶导数/积分。需要注意的是，$(2.4)$ 的使用没有限制条件，但是 $(2.5)$ 是<strong>不能随便使用</strong>的。这是因为在引入了奇异函数 $\varepsilon(t),\delta(t),\delta'(t)$ 等后，几乎所有的<st>真实信号函数</st>都是无穷阶可导的，但是不是所有函数都可以执行变上限积分。在应用式 $(2.5)$ 是，显然需要保证我们选择的积分函数是可积的。</p>
+<blockquote>
+&emsp;&emsp;式 $(2.5)$ 的使用前提是显然的，如果在使用 $(2.5)$ 时出现了类似于 $\displaystyle\int_{-\infty}^tx\mathrm dx$ 这种不收敛的反常积分，你一眼就知道不能这样做，自己的做法有问题。<br>
+&emsp;&emsp;比如使用 $(2.5)$ 的一半 $\displaystyle\int_{-\infty}^t[u(x) *v(x)]\mathrm dx=u(t) *\left[\int_{-\infty}^tv(x)\mathrm dx\right]$ 时，至少要保证 $\displaystyle\int_{-\infty}^t[u(x) *v(x)]\mathrm dx$ 和 $\displaystyle\int_{-\infty}^tv(x)\mathrm dx$ 都是存在的，而无需考虑 $\displaystyle\int_{-\infty}^tu(x)\mathrm dx$ 是否存在。
+</blockquote>
+<p>  特别地，根据式子 $(2.4)(2.5)$，可以得到一个比较有用的结果：
+$$u(t) *v(t)=\cfrac{\mathrm du(t)}{\mathrm dt} *\int_{-\infty}^tv(x)\mathrm d x\tag{2.6}$$</p>
+<p>  上式还能互换 $u(t),v(t)$ 的地位，这里略去不写。式 $(2.6)$ 的使用条件是 $\displaystyle\int_{-\infty}^tv(x)\mathrm dx$ 存在，且<st> $\lim\limits_{x\rightarrow -\infty}u(t) *v(t)=0$</st>。</p>
+<blockquote>
+&emsp;&emsp;这是因为式 $(2.6)$ 可以看作是对式子 $u(t) *v(t)=u(t)*v(t)$ 两边分别运用 $(2.4)(2.5)$ 得到的，只不过等号右边选择了不同的函数进行操作。需要注意的是，左边在进行微分、积分后要能够得到原来的式子。如果先进行微分，那么：
+$$\int_{-\infty}^t\cfrac{\mathrm d[u(x) *v(x)]}{\mathrm dx}\mathrm dt=u(t) *v(t)-u(-\infty) *v(-\infty)\tag{2.7}$$
+&emsp;&emsp;显然只有满足 $\lim\limits_{x\rightarrow -\infty}u(t) *v(t)=0$，左边才能复原。如果先进行积分，那么首先就要保证 $\displaystyle\int_{-\infty}^t[u(x) *v(x)]\mathrm dx$ 存在，显然也需要满足 $\lim\limits_{x\rightarrow -\infty}u(t) *v(t)=0$，否则反常积分不收敛。<br>
+&emsp;&emsp;同时，有的地方说 $(2.6)$ 成立的条件是 $u(t)=\displaystyle\int_{-\infty}^tu'(x)\mathrm dx$，也就是 $\lim\limits_{x\rightarrow -\infty}u(x)=0$，这个条件是不准确的，至少其必要性不成立。<br>
+&emsp;&emsp;考虑 $u(t)=1+\varepsilon(t),v(t)=\left[\mathrm e^{-t}-\cfrac{1}{(t+1)^2}\right]\varepsilon(t)$，虽然不满足 $\lim\limits_{x\rightarrow -\infty}u(x)=0$，但是依然可以使用 $(2.6)$ 式：
+$$u(t) *v(t)=\delta(t) *\int_{-\infty}^t\left[\mathrm e^{-x}-\cfrac{1}{(x+1)^2}\right]\varepsilon(x)\mathrm dx=\varepsilon(t)\int_0^t\left[\mathrm e^{-x}-\cfrac{1}{(x+1)^2}\right]\mathrm dx=\left(\cfrac{1}{t+1}-\mathrm e^{-t}\right)\varepsilon(t)\tag{2.8}$$
+</blockquote>
+<p>  除此之外，还有一个延时的性质：若 $f(t)=f _1(t) *f _2(t)$，则有 $f(t-t _1-t _2)=f _1(t-t _1) * f _2(t-t _2)$。</p>
+<h2 id="chapter3-%E8%BF%9E%E7%BB%AD%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%AD%A3%E4%BA%A4%E5%88%86%E8%A7%A3">$Chapter3$ 连续信号的正交分解</h2>
+<p><strong>一、傅里叶级数</strong><br>
+  对于真实信号函数 $f(t)$ 来说，一般都可以分解为傅里叶级数：
+$$f(t)=\cfrac{a <em>0}{2}+\sum</em>{n=1}^\infty(a _n\cos n\varOmega t+b _n\sin n\varOmega t)\tag{3.1}$$</p>
+<blockquote>
+&emsp;&emsp;根据 Dirichlet 条件，上式中的 “$=$” 写作 “$\sim$” 更严谨，因为可能会存在一些离散的点，等式左右两边在这些点上的取值不相等。但是毕竟是个别离散的点，工程上可以直接忽略，所以直接使用了 “$=$”。
+</blockquote>
+<p>  其中，系数 $a _n,b _n$ 的求解公式是：
+$$\begin{cases}\displaystyle a <em>n=\cfrac{2}{T}\int</em>{t _1}^{t _1+T}f(t)\cos n\varOmega t\mathrm dt\
+\displaystyle b <em>n=\cfrac{2}{T}\int</em>{t _1}^{t _1+T}f(t)\sin n\varOmega t\mathrm dt\end{cases}\tag{3.2}$$</p>
+<p>  其中有 $T=2\pi/\varOmega$。显然，式 $(3.2)$ 也可以使用配角公式，写作式 $(3.3)$ 所示：
+$$f(t)=\cfrac{a _0}{2}+\sum _{n=1}^\infty A_n\cos(n\varOmega t+\varphi _n)\tag{3.3}$$</p>
+<p>  如果考虑到欧拉公式，使用复指数消去三角函数，就得到了 $f(t)$ 的<strong>指数傅里叶级数</strong>：
+$$f(t)=\cfrac{1}{2}\sum_{n=-\infty}^{+\infty}A _n\mathrm e^{\mathrm j(n\varOmega t+\varphi _n)}=\cfrac{1}{2}\sum _{n=-\infty}^{+\infty}\dot A _n\mathrm e^{\mathrm jn\varOmega t}\tag{3.4}$$</p>
+<p>  其中的 $A _n$ 和 $\varphi _n$ 和 $(3.3)$ 里面是一样的。同时 $(3.4)$ 中还满足 $A _n=A _{-n},\varphi _n=-\varphi _{-n}$。有的地方使用 $F _n$ 和 $\dot F _n$，它们分别有 $F _n=A _n/2$，$\dot F _n=\dot A _n/2$。</p>
 <p>$\boxed{\mathrm{To\ Be\ Continued}}$</p>
 
 </body>
