@@ -100,33 +100,33 @@ $$r(t) = \int _0^te(t)h(t-\tau)\mathrm d\tau\tag{2.2}$$
 
 **二、卷积的性质**\
 &emsp;&emsp;卷积运算是一种抽象出来的运算，它的定义是：
-$$f(t)*g(t)=\int_{-\infty}^{+\infty}f(\tau)g(t-\tau)\mathrm d\tau\tag{2.3}$$
+$$f(t) * g(t)=\int_{-\infty}^{+\infty}f(\tau)g(t-\tau)\mathrm d\tau\tag{2.3}$$
 
 &emsp;&emsp;和很多运算类似，卷积具有**交换律**、对加减法的**分配律**以及**结合律**。对于卷积结果进行微积分运算，有下列结论成立：
-$$\cfrac{\mathrm d}{\mathrm dt}[u(t) *v(t)]=u(t) *\cfrac{\mathrm dv(t)}{\mathrm dt}=\cfrac{\mathrm du(t)}{\mathrm dt} *v(t)\tag{2.4}$$
+$$\cfrac{\mathrm d}{\mathrm dt}[u(t) * v(t)]=u(t) * \cfrac{\mathrm dv(t)}{\mathrm dt}=\cfrac{\mathrm du(t)}{\mathrm dt} * v(t)\tag{2.4}$$
 
-$$\int_{-\infty}^t[u(x) *v(x)]\mathrm dx=u(t) *\left[\int_{-\infty}^tv(x)\mathrm dx\right]=\left[\int_{-\infty}^tu(x)\mathrm dx\right] *v(t)\tag{2.5}$$
+$$\int_{-\infty}^t[u(x) * v(x)]\mathrm dx=u(t) * \left[\int_{-\infty}^tv(x)\mathrm dx\right]=\left[\int_{-\infty}^tu(x)\mathrm dx\right] * v(t)\tag{2.5}$$
 
 &emsp;&emsp;上面的式子当然可以推广到多个函数卷积的导数/积分，以及卷积结果的多阶导数/积分。需要注意的是，$(2.4)$ 的使用没有限制条件，但是 $(2.5)$ 是**不能随便使用**的。这是因为在引入了奇异函数 $\varepsilon(t),\delta(t),\delta'(t)$ 等后，几乎所有的<st>真实信号函数</st>都是无穷阶可导的，但是不是所有函数都可以执行变上限积分。在应用式 $(2.5)$ 是，显然需要保证我们选择的积分函数是可积的。
 <blockquote>
 &emsp;&emsp;式 $(2.5)$ 的使用前提是显然的，如果在使用 $(2.5)$ 时出现了类似于 $\displaystyle\int_{-\infty}^tx\mathrm dx$ 这种不收敛的反常积分，你一眼就知道不能这样做，自己的做法有问题。<br>
-&emsp;&emsp;比如使用 $(2.5)$ 的一半 $\displaystyle\int_{-\infty}^t[u(x) *v(x)]\mathrm dx=u(t) *\left[\int_{-\infty}^tv(x)\mathrm dx\right]$ 时，至少要保证 $\displaystyle\int_{-\infty}^t[u(x) *v(x)]\mathrm dx$ 和 $\displaystyle\int_{-\infty}^tv(x)\mathrm dx$ 都是存在的，而无需考虑 $\displaystyle\int_{-\infty}^tu(x)\mathrm dx$ 是否存在。
+&emsp;&emsp;比如使用 $(2.5)$ 的一半 $\displaystyle\int_{-\infty}^t[u(x) * v(x)]\mathrm dx=u(t) * \left[\int_{-\infty}^tv(x)\mathrm dx\right]$ 时，至少要保证 $\displaystyle\int_{-\infty}^t[u(x) * v(x)]\mathrm dx$ 和 $\displaystyle\int_{-\infty}^tv(x)\mathrm dx$ 都是存在的，而无需考虑 $\displaystyle\int_{-\infty}^tu(x)\mathrm dx$ 是否存在。
 </blockquote>
 
 &emsp;&emsp;特别地，根据式子 $(2.4)(2.5)$，可以得到一个比较有用的结果：
-$$u(t) *v(t)=\cfrac{\mathrm du(t)}{\mathrm dt} *\int_{-\infty}^tv(x)\mathrm d x\tag{2.6}$$
+$$u(t) * v(t)=\cfrac{\mathrm du(t)}{\mathrm dt} * \int_{-\infty}^tv(x)\mathrm d x\tag{2.6}$$
 
-&emsp;&emsp;上式还能互换 $u(t),v(t)$ 的地位，这里略去不写。式 $(2.6)$ 的使用条件是 $\displaystyle\int_{-\infty}^tv(x)\mathrm dx$ 存在，且<st> $\lim\limits_{x\rightarrow -\infty}u(t) *v(t)=0$</st>。
+&emsp;&emsp;上式还能互换 $u(t),v(t)$ 的地位，这里略去不写。式 $(2.6)$ 的使用条件是 $\displaystyle\int_{-\infty}^tv(x)\mathrm dx$ 存在，且<st> $\lim\limits_{x\rightarrow -\infty}u(t) * v(t)=0$</st>。
 <blockquote>
-&emsp;&emsp;这是因为式 $(2.6)$ 可以看作是对式子 $u(t) *v(t)=u(t)*v(t)$ 两边分别运用 $(2.4)(2.5)$ 得到的，只不过等号右边选择了不同的函数进行操作。需要注意的是，左边在进行微分、积分后要能够得到原来的式子。如果先进行微分，那么：
-$$\int_{-\infty}^t\cfrac{\mathrm d[u(x) *v(x)]}{\mathrm dx}\mathrm dt=u(t) *v(t)-u(-\infty) *v(-\infty)\tag{2.7}$$
-&emsp;&emsp;显然只有满足 $\lim\limits_{x\rightarrow -\infty}u(t) *v(t)=0$，左边才能复原。如果先进行积分，那么首先就要保证 $\displaystyle\int_{-\infty}^t[u(x) *v(x)]\mathrm dx$ 存在，显然也需要满足 $\lim\limits_{x\rightarrow -\infty}u(t) *v(t)=0$，否则反常积分不收敛。<br>
+&emsp;&emsp;这是因为式 $(2.6)$ 可以看作是对式子 $u(t) * v(t)=u(t) * v(t)$ 两边分别运用 $(2.4)(2.5)$ 得到的，只不过等号右边选择了不同的函数进行操作。需要注意的是，左边在进行微分、积分后要能够得到原来的式子。如果先进行微分，那么：
+$$\int_{-\infty}^t\cfrac{\mathrm d[u(x) * v(x)]}{\mathrm dx}\mathrm dt=u(t) * v(t)-u(-\infty) * v(-\infty)\tag{2.7}$$
+&emsp;&emsp;显然只有满足 $\lim\limits_{x\rightarrow -\infty}u(t) * v(t)=0$，左边才能复原。如果先进行积分，那么首先就要保证 $\displaystyle\int_{-\infty}^t[u(x) * v(x)]\mathrm dx$ 存在，显然也需要满足 $\lim\limits_{x\rightarrow -\infty}u(t) * v(t)=0$，否则反常积分不收敛。<br>
 &emsp;&emsp;同时，有的地方说 $(2.6)$ 成立的条件是 $u(t)=\displaystyle\int_{-\infty}^tu'(x)\mathrm dx$，也就是 $\lim\limits_{x\rightarrow -\infty}u(x)=0$，这个条件是不准确的，至少其必要性不成立。<br>
 &emsp;&emsp;考虑 $u(t)=1+\varepsilon(t),v(t)=\left[\mathrm e^{-t}-\cfrac{1}{(t+1)^2}\right]\varepsilon(t)$，虽然不满足 $\lim\limits_{x\rightarrow -\infty}u(x)=0$，但是依然可以使用 $(2.6)$ 式：
-$$u(t) *v(t)=\delta(t) *\int_{-\infty}^t\left[\mathrm e^{-x}-\cfrac{1}{(x+1)^2}\right]\varepsilon(x)\mathrm dx=\varepsilon(t)\int_0^t\left[\mathrm e^{-x}-\cfrac{1}{(x+1)^2}\right]\mathrm dx=\left(\cfrac{1}{t+1}-\mathrm e^{-t}\right)\varepsilon(t)\tag{2.8}$$
+$$u(t) * v(t)=\delta(t) * \int_{-\infty}^t\left[\mathrm e^{-x}-\cfrac{1}{(x+1)^2}\right]\varepsilon(x)\mathrm dx=\varepsilon(t)\int_0^t\left[\mathrm e^{-x}-\cfrac{1}{(x+1)^2}\right]\mathrm dx=\left(\cfrac{1}{t+1}-\mathrm e^{-t}\right)\varepsilon(t)\tag{2.8}$$
 </blockquote>
 
-&emsp;&emsp;除此之外，还有一个延时的性质：若 $f(t)=f _1(t) *f _2(t)$，则有 $f(t-t _1-t _2)=f _1(t-t _1) * f _2(t-t _2)$。
+&emsp;&emsp;除此之外，还有一个延时的性质：若 $f(t)=f _1(t) * f _2(t)$，则有 $f(t-t _1-t _2)=f _1(t-t _1) * f _2(t-t _2)$。
 
 ## $Chapter3$&emsp;连续信号的正交分解
 **一、傅里叶级数**\
