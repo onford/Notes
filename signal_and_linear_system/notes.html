@@ -388,6 +388,7 @@ code {
         border-left: 5px solid #ccc;
     }
     table,th,td{
+        padding: 0;
         font-size:17px;
         font-family:"Times New Roman","宋体";
         border: 1px solid;
@@ -477,8 +478,9 @@ $$u(t) * v(t)=\delta(t) * \int_{-\infty}^t\left[\mathrm e^{-x}-\cfrac{1}{(x+1)^2
 </blockquote>
 <p>  除此之外，还有一个延时的性质：若 $f(t)=f _1(t) * f _2(t)$，则有 $f(t-t _1-t _2)=f _1(t-t _1) * f _2(t-t _2)$。</p>
 <h2 id="chapter3-%E8%BF%9E%E7%BB%AD%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%AD%A3%E4%BA%A4%E5%88%86%E8%A7%A3">$Chapter3$ 连续信号的正交分解</h2>
+<h1 id=""></h1>
 <p><strong>一、傅里叶级数</strong><br>
-  对于真实信号函数 $f(t)$ 来说，一般都可以分解为傅里叶级数：
+  对于真实信号<strong>周期函数</strong> $f(t)$ 来说，一般都可以分解为傅里叶级数：
 $$f(t)=\cfrac{a _0}{2}+\sum _{n=1}^\infty(a _n\cos n\varOmega t+b _n\sin n\varOmega t)\tag{3.1}$$</p>
 <blockquote>
 &emsp;&emsp;根据 Dirichlet 条件，上式中的 “$=$” 写作 “$\sim$” 更严谨，因为可能会存在一些离散的点，等式左右两边在这些点上的取值不相等。但是毕竟是个别离散的点，工程上可以直接忽略，所以直接使用了 “$=$”。
@@ -486,11 +488,53 @@ $$f(t)=\cfrac{a _0}{2}+\sum _{n=1}^\infty(a _n\cos n\varOmega t+b _n\sin n\varOm
 <p>  其中，系数 $a _n,b _n$ 的求解公式是：
 $$\begin{cases}\displaystyle a _n=\cfrac{2}{T}\int _{t _1}^{t _1+T}f(t)\cos n\varOmega t\mathrm dt\\
 \displaystyle b _n=\cfrac{2}{T}\int _{t _1}^{t _1+T}f(t)\sin n\varOmega t\mathrm dt\end{cases}\tag{3.2}$$</p>
-<p>  其中有 $T=2\pi/\varOmega$。显然，式 $(3.2)$ 也可以使用配角公式，写作式 $(3.3)$ 所示：
+<p>  其中有 $T=2\pi/\varOmega$，是函数 $f(t)$ 的周期。显然，式 $(3.2)$ 也可以使用配角公式，写作式 $(3.3)$ 所示：
 $$f(t)=\cfrac{a _0}{2}+\sum _{n=1}^\infty A_n\cos(n\varOmega t+\varphi _n)\tag{3.3}$$</p>
 <p>  如果考虑到欧拉公式，使用复指数消去三角函数，就得到了 $f(t)$ 的<strong>指数傅里叶级数</strong>：
 $$f(t)=\cfrac{1}{2}\sum_{n=-\infty}^{+\infty}A _n\mathrm e^{\mathrm j(n\varOmega t+\varphi _n)}=\cfrac{1}{2}\sum _{n=-\infty}^{+\infty}\dot A _n\mathrm e^{\mathrm jn\varOmega t}\tag{3.4}$$</p>
-<p>  其中的 $A _n$ 和 $\varphi _n$ 和 $(3.3)$ 里面是一样的。同时 $(3.4)$ 中还满足 $A _n=A _{-n},\varphi _n=-\varphi _{-n}$。有的地方使用 $F _n$ 和 $\dot F _n$，它们分别有 $F _n=A _n/2$，$\dot F _n=\dot A _n/2$。</p>
+<p>  其中的 $A _n$ 和 $\varphi _n$ 和 $(3.3)$ 里面是一样的。同时 $(3.4)$ 中还满足 $A _n=A _{-n},\varphi _n=-\varphi _{-n}$。有的地方使用 $F _n$ 和 $\dot F _n$，它们分别有 $F _n=A _n/2$，$\dot F _n=\dot A _n/2$。<br>
+<strong>二、傅里叶变换及其性质</strong><br>
+<strong>1.傅里叶变换</strong><br>
+  当周期函数的 $T$ 趋于无穷大时，这个函数就不再具备周期性，同时其傅里叶级数中 $k$ 次谐波和 $k+1$ 次谐波的频率差也趋于 $0$，离散的函数有向连续转变的趋势，级数和有向定积分转变的趋势。对比式 $(3.4)$，对于<strong>非周期函数</strong> $f(t)$，有：
+$$f(t)=\cfrac{1}{2\pi}\int _{-\infty}^{+\infty} F(\omega)\mathrm e^{\mathrm j\omega t}\mathrm d\omega\tag{3.5}$$</p>
+<blockquote>
+&emsp;&emsp;有的地方也把 $F(\omega)$ 写作 $F(\mathrm j\omega)$。
+</blockquote>
+<p>  其中“系数” $F(\omega)$ 可以通过下式求得：
+$$F(\omega)=\int _{-\infty}^{+\infty}f(t)\mathrm e^{-\mathrm j\omega t}\mathrm dt\tag{3.6}$$</p>
+<p>  式 $(3.5)(3.6)$ 被统称为傅里叶变换式，$(3.6)$ 被称为正变换，也写作 $F(\omega)=\mathscr F\lbrace f(t)\rbrace $；$(3.5)$ 被称为反变换，也写作 $f(t)=\mathscr F^{-1}\lbrace F(\omega)\rbrace $。<br>
+  特别地，单矩形脉冲信号 $f(t)=A[\varepsilon(-\tau/2)-\varepsilon(\tau/2)]$ 的傅里叶变换是 $F(\omega)=A\tau \mathrm{Sa}\left(\cfrac{\omega\tau}{2}\right)$。其中，<strong>抽样函数</strong> $\mathrm{Sa}(t)=\cfrac{\sin t}{t}$。</p>
+<!-- <table width="100%">
+    <tr>
+        <td>单矩形脉冲信号 $f(t)$</td>
+        <td>单矩形脉冲信号的傅里叶变换 $F(\omega)$</td>
+    </tr>
+    <tr>
+        <th><img src="fig1.svg"></img></th>
+        <th><img src="fig2.svg"></img></th>
+    </tr>
+</table> -->
+<div align="center"><img src="fig1.svg"></img>&emsp;&emsp;&emsp;&emsp;<img src="fig2.svg"></img></div>
+<p><strong>2.傅里叶变换的性质</strong><br>
+  傅里叶变换具有的性质有：<br>
+<strong>线性特性</strong>：$\mathscr F\lbrace af _1(t) +bf _2(t)\rbrace =a\mathscr F\lbrace  f _1(t)\rbrace  + b\mathscr F\lbrace  f _2(t)\rbrace $。<br>
+<strong>延时特性</strong>：若 $f(t)\leftrightarrow F(\omega)$，则 $f(t-t _0)\leftrightarrow F(\omega)\mathrm e^{-\mathrm j\omega t _0}$。<br>
+<strong>移频特性</strong>：若 $f(t)\leftrightarrow F(\omega)$，则 $f(t)\mathrm e^{\mathrm j\omega _ct}\leftrightarrow F(\omega-\omega _c)$。特别的，由于余弦函数可以用复指数表示，因此也存在 $f(t)\cos\omega _ct\leftrightarrow \cfrac{1}{2}[F(\omega+\omega _c)+F(\omega-\omega _c)]$。<br>
+<strong>对称特性</strong>（非常有用）：若 $f(t)\leftrightarrow F(\omega)$，则 $F(t)\leftrightarrow 2\pi f(-\omega)$。</p>
+<blockquote>
+&emsp;&emsp;对称特性非常适合用于求已知反变换的函数的正变换。例如，抽样函数是单矩形脉冲函数的傅里叶变换，但是直接求抽样函数的傅里叶变换会比较困难。
+$$\begin{aligned}\mathscr F\lbrace \mathrm{Sa}(t)\rbrace&=\int _{-\infty}^{+\infty}\mathrm{Sa}(t)\mathrm e^{-\mathrm j\omega t}\mathrm dt\\\\
+&=2\int _{0}^{+\infty}\cfrac{\sin t}{t}\cos(\omega t)\\\\
+&=\int _{0}^{+\infty}\cfrac{\sin(1+\omega) t+\sin(1-\omega)t}{t}\mathrm dt\end{aligned}\tag{3.7}$$
+<p>  根据狄利克雷积分：
+$$\int _0^{+\infty}\cfrac{\sin x}{x}\mathrm dx=\cfrac{\pi}{2}\tag{3.8}$$</p>
+<p>  可得当 $-1&lt; \omega&lt; 1$ 时，$\mathscr F\lbrace\mathrm{Sa}(t)\rbrace=\pi$;当 $\omega &gt; 1$ 或 $\omega &lt; -1$ 时，$\mathscr F\lbrace\mathrm{Sa}(t)\rbrace=0$。显然用对称特性会比直接计算快一些。</p>
+</blockquote>
+<p><strong>微分特性</strong>：分为时域上的微分和频域上的微分。若 $f(t)\leftrightarrow F(\omega)$，则有 $\cfrac{\mathrm d^nf(t)}{\mathrm dt^n}\leftrightarrow (\mathrm j\omega)^nF(\omega)$ 和 $(-\mathrm jt)^nf(t)\leftrightarrow \cfrac{\mathrm d^nF(\omega)}{\mathrm dt^n}$。<br>
+<strong>积分特性</strong>：分为时域上的积分和频域上的积分。若 $f(t)\leftrightarrow F(\omega)$，且不考虑 $t=0,\omega=0$ 时 $f(t),F(\omega)$ 的取值，则有 $\displaystyle\int _{-\infty}^t f(\tau)\mathrm d\tau\leftrightarrow \cfrac{1}{\mathrm j\omega}F(\omega)$ 和 $\displaystyle\cfrac{1}{-\mathrm jt}f(t)\leftrightarrow\int _{-\infty}^\omega F(\varOmega)\mathrm d\varOmega$。需要注意的是式中的积分都应该收敛。<br>
+<strong>卷积特性</strong>（非常重要）：<br>
+  两个信号的卷积的傅里叶变换是它们分别傅里叶变换的乘积：$f _1(t) * f _2(t)\leftrightarrow \mathscr F\lbrace f _1(t)\rbrace\mathscr F\lbrace f _2(t)\rbrace$。<br>
+  两个信号的乘积的傅里叶变换是它们分别傅里叶变换的卷积的 $1/2\pi$：$f _1(t)f _2(t)\leftrightarrow \cfrac{1}{2\pi}\mathscr F\lbrace f _1(t)\rbrace * \mathscr F\lbrace f _2(t)\rbrace$。这一结论可以由上面那条结论和对称特性导出。</p>
 <p>$\boxed{\mathrm{To\ Be\ Continued}}$</p>
 
 </body>
