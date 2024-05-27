@@ -31,12 +31,6 @@
         font-family:"Times New Roman","黑体";
         font-size:17px;
     }
-    img{
-        margin: 0 auto;
-        left:50%;
-        right:50%;
-        width: 30%;
-    }
     code {
 	font-size: 16px;
 	line-height: 30px;
@@ -130,7 +124,7 @@ $$u(t) * v(t)=\delta(t) * \int_{-\infty}^t\left[\mathrm e^{-x}-\cfrac{1}{(x+1)^2
 &emsp;&emsp;除此之外，还有一个延时的性质：若 $f(t)=f _1(t) * f _2(t)$，则有 $f(t-t _1-t _2)=f _1(t-t _1) * f _2(t-t _2)$。
 
 ## $Chapter3$&emsp;连续信号的正交分解
-#
+
 **一、傅里叶级数**\
 &emsp;&emsp;对于真实信号**周期函数** $f(t)$ 来说，一般都可以分解为傅里叶级数：
 $$f(t)=\cfrac{a _0}{2}+\sum _{n=1}^\infty(a _n\cos n\varOmega t+b _n\sin n\varOmega t)\tag{3.1}$$
@@ -163,18 +157,17 @@ $$f(t)=\cfrac{1}{2\pi}\int _{-\infty}^{+\infty} F(\omega)\mathrm e^{\mathrm j\om
 $$F(\omega)=\int _{-\infty}^{+\infty}f(t)\mathrm e^{-\mathrm j\omega t}\mathrm dt\tag{3.6}$$
 
 &emsp;&emsp;式 $(3.5)(3.6)$ 被统称为傅里叶变换式，$(3.6)$ 被称为正变换，也写作 $F(\omega)=\mathscr F\lbrace f(t)\rbrace $；$(3.5)$ 被称为反变换，也写作 $f(t)=\mathscr F^{-1}\lbrace F(\omega)\rbrace $。\
-&emsp;&emsp;特别地，单矩形脉冲信号 $f(t)=A[\varepsilon(-\tau/2)-\varepsilon(\tau/2)]$ 的傅里叶变换是 $F(\omega)=A\tau \mathrm{Sa}\left(\cfrac{\omega\tau}{2}\right)$。其中，**抽样函数** $\mathrm{Sa}(t)=\cfrac{\sin t}{t}$。
-<!-- <table width="100%">
+&emsp;&emsp;特别地，<st>单矩形脉冲信号 $f(t)=A[\varepsilon(-\tau/2)-\varepsilon(\tau/2)]$ 的傅里叶变换是 $F(\omega)=A\tau \mathrm{Sa}\left(\cfrac{\omega\tau}{2}\right)$</st>。其中，**抽样函数** $\mathrm{Sa}(t)=\cfrac{\sin t}{t}$。
+<table width="100%">
     <tr>
-        <td>单矩形脉冲信号 $f(t)$</td>
-        <td>单矩形脉冲信号的傅里叶变换 $F(\omega)$</td>
+        <td width="50%">单矩形脉冲信号 $f(t)$</td>
+        <td width="50%">单矩形脉冲信号的傅里叶变换 $F(\omega)$</td>
     </tr>
     <tr>
         <th><img src="fig1.svg"></img></th>
         <th><img src="fig2.svg"></img></th>
     </tr>
-</table> -->
-<div align="center"><img src="fig1.svg"></img>&emsp;&emsp;&emsp;&emsp;<img src="fig2.svg"></img></div>
+</table>
 
 **2.傅里叶变换的性质**\
 &emsp;&emsp;傅里叶变换具有的性质有：\
@@ -188,18 +181,62 @@ $$F(\omega)=\int _{-\infty}^{+\infty}f(t)\mathrm e^{-\mathrm j\omega t}\mathrm d
 $$\begin{aligned}\mathscr F\lbrace \mathrm{Sa}(t)\rbrace&=\int _{-\infty}^{+\infty}\mathrm{Sa}(t)\mathrm e^{-\mathrm j\omega t}\mathrm dt\\\\
 &=2\int _{0}^{+\infty}\cfrac{\sin t}{t}\cos(\omega t)\\\\
 &=\int _{0}^{+\infty}\cfrac{\sin(1+\omega) t+\sin(1-\omega)t}{t}\mathrm dt\end{aligned}\tag{3.7}$$
-
-&emsp;&emsp;根据狄利克雷积分：
+根据狄利克雷积分：
 $$\int _0^{+\infty}\cfrac{\sin x}{x}\mathrm dx=\cfrac{\pi}{2}\tag{3.8}$$
-
-&emsp;&emsp;可得当 $-1< \omega< 1$ 时，$\mathscr F\lbrace\mathrm{Sa}(t)\rbrace=\pi$;当 $\omega > 1$ 或 $\omega < -1$ 时，$\mathscr F\lbrace\mathrm{Sa}(t)\rbrace=0$。显然用对称特性会比直接计算快一些。
-
+可得当 $-1< \omega< 1$ 时，$\mathscr F\lbrace\mathrm{Sa}(t)\rbrace=\pi$;当 $\omega > 1$ 或 $\omega < -1$ 时，$\mathscr F\lbrace\mathrm{Sa}(t)\rbrace=0$。即 $\mathscr F\lbrace\mathrm{Sa}(t)\rbrace\leftrightarrow \pi[\varepsilon(\omega+1)-\varepsilon(\omega-1)]$。<br>
+&emsp;&emsp;显然用对称特性会比直接计算快一些：令 $A=\cfrac{1}{2}$ 和 $\tau=2$，那么有：
+$$\cfrac{1}{2}[\varepsilon(t+1)-\varepsilon(t-1)]\leftrightarrow \mathrm{Sa}(\omega)\tag{3.8}$$
+根据对称特性有：
+$$\mathrm{Sa}(t)\leftrightarrow \pi[\varepsilon(-\omega+1)-\varepsilon(-\omega-1)]\tag{3.9}$$
+式 $(3.9)$ 和用狄利克雷积分获得的结果是一样的。
 </blockquote>
 
 **微分特性**：分为时域上的微分和频域上的微分。若 $f(t)\leftrightarrow F(\omega)$，则有 $\cfrac{\mathrm d^nf(t)}{\mathrm dt^n}\leftrightarrow (\mathrm j\omega)^nF(\omega)$ 和 $(-\mathrm jt)^nf(t)\leftrightarrow \cfrac{\mathrm d^nF(\omega)}{\mathrm dt^n}$。\
 **积分特性**：分为时域上的积分和频域上的积分。若 $f(t)\leftrightarrow F(\omega)$，且不考虑 $t=0,\omega=0$ 时 $f(t),F(\omega)$ 的取值，则有 $\displaystyle\int _{-\infty}^t f(\tau)\mathrm d\tau\leftrightarrow \cfrac{1}{\mathrm j\omega}F(\omega)$ 和 $\displaystyle\cfrac{1}{-\mathrm jt}f(t)\leftrightarrow\int _{-\infty}^\omega F(\varOmega)\mathrm d\varOmega$。需要注意的是式中的积分都应该收敛。\
 **卷积特性**（非常重要）：\
-&emsp;&emsp;两个信号的卷积的傅里叶变换是它们分别傅里叶变换的乘积：$f _1(t) * f _2(t)\leftrightarrow \mathscr F\lbrace f _1(t)\rbrace\mathscr F\lbrace f _2(t)\rbrace$。\
-&emsp;&emsp;两个信号的乘积的傅里叶变换是它们分别傅里叶变换的卷积的 $1/2\pi$：$f _1(t)f _2(t)\leftrightarrow \cfrac{1}{2\pi}\mathscr F\lbrace f _1(t)\rbrace * \mathscr F\lbrace f _2(t)\rbrace$。这一结论可以由上面那条结论和对称特性导出。
+&emsp;&emsp;**特性一**：两个信号的卷积的傅里叶变换是它们分别傅里叶变换的乘积：$f _1(t) * f _2(t)\leftrightarrow \mathscr F\lbrace f _1(t)\rbrace\mathscr F\lbrace f _2(t)\rbrace$。\
+&emsp;&emsp;**特性二**：两个信号的乘积的傅里叶变换是它们分别傅里叶变换的卷积的 $\cfrac{1}{2\pi}$：$f _1(t)f _2(t)\leftrightarrow \cfrac{1}{2\pi}\mathscr F\lbrace f _1(t)\rbrace * \mathscr F\lbrace f _2(t)\rbrace$。这一结论可以由特性一和对称特性导出。
+<blockquote>
+&emsp;&emsp;下面给出由特性一和对称特性导出特性二的过程。不妨记 $\mathscr F\lbrace g _1(t)\rbrace=G _1(\omega)$，$\mathscr F\lbrace g _2(t)\rbrace=G _2(\omega)$。由特性一，有 $g _1(t) * g _2(t)\leftrightarrow G _1(\omega)G _2(\omega)$。因此得到三个傅里叶变换关系：
+$$\begin{cases}g _1(t)\leftrightarrow G _1(\omega)\\\\
+g _2(t)\leftrightarrow G _2(\omega)\\\\
+g _1(t) * g _2(t)\leftrightarrow G _1(\omega)G _2(\omega)\end{cases}\tag{3.10}$$
+根据<strong>对称特性</strong>，有：
+$$\begin{cases}G _1(t)\leftrightarrow 2\pi g _1(-\omega)\\\\
+G _2(t)\leftrightarrow 2\pi g _2(-\omega)\\\\
+G _1(t)G _2(t)\leftrightarrow 2\pi g _1(-\omega) * g _2(-\omega)\end{cases}\tag{3.11}$$
+由 $(3.11)$ 前两式可得 $\mathscr F\lbrace G _1(t)\rbrace=2\pi g _1(-\omega)$，$\mathscr F\lbrace G _2(t)\rbrace=2\pi g _2(-\omega)$。代入第三式即得：
+$$G _1(t)G _2(t)\leftrightarrow \cfrac{1}{2\pi}\mathscr F\lbrace G _1(t)\rbrace * \mathscr F\lbrace G _2(t)\rbrace\tag{3.12}$$
+</blockquote>
+
+## $Chapter4$&emsp;连续时间系统的频域分析
+&emsp;&emsp;这一章是运用**傅里叶变换**将信号在时域上的分析转移到**频域**。相比于**拉普拉斯变换**，傅里叶变换<st>只能求解系统的零状态响应</st>。
+<blockquote>
+&emsp;&emsp;通过对傅里叶变换只能求解系统的零状态响应，说明它无法考虑系统的初值条件。一个很关键的原因就是，很多激励函数的傅里叶变换都是不存在的；另一个关键原因就是傅里叶变换考虑了 $t < 0$ 的时间域。式 $(3.6)$ 中我们可以感性地看到，当 $t\rightarrow -\infty$ 时，复变量 $\mathrm e^{-\mathrm j\omega t}$ 会不停地在复平面旋转；如果 $f(t)$ 是实信号，只有 $\lim\limits _{t\rightarrow -\infty}f(t)=0$，反常积分才可能收敛，傅里叶变换 $F(\omega)$ 才有可能存在。<br>
+&emsp;&emsp;由于我们在频域求解时，对 $r(t)$ 进行了傅里叶变换，其前提就是傅里叶变换存在，因而有 $\lim\limits _{t\rightarrow -\infty}r(t)=0$，即系统无初始储能。<br>
+&emsp;&emsp;基于相同的原因，双边拉普拉斯变换应该也存在只能求解零状态响应的问题；但是单边拉普拉斯变换因为积分下限是 $0$，$\mathrm e^{-st}$ 中的 $s$ 就不会跑到负无穷那边去，因而不需要条件 $\lim\limits _{t\rightarrow -\infty}f(t)=0$。
+</blockquote>
+
+**一、频率分析方法**\
+**1.频率响应函数**\
+&emsp;&emsp;频率响应函数 $H(\omega)$ 描述了系统对特定频率的激励的响应特征。一方面，根据系统 $r(t)$ 与 $e(t)$ 的微分方程，经过傅里叶变换后得到频域的方程，从而**定义**频率响应函数：
+$$H(\omega)=\cfrac{R(\omega)}{E(\omega)}\tag{4.1}$$
+
+&emsp;&emsp;若已知 $E(\omega)$，可以直接与频响函数相乘得 $R(\omega)$。另一方面，根据 $(2.2)$ 的卷积式也能得到 $R(\omega)=H(\omega)E(\omega)$，从而发现**频响函数是冲激响应的傅里叶变换**，即 $h(t)\leftrightarrow H(\omega)$。\
+**2.利用频响函数进行频域分析**\
+&emsp;&emsp;对于给定的激励信号 $e(t)$，可以按照下面的步骤，在频域求响应 $r(t)$：\
+(1) 对 $e(t)$ 傅里叶变换得 $E(\omega)$。\
+(2) 设法得到频响函数 $H(\omega)$，求 $R(\omega)=H(\omega)E(\omega)$。\
+(3) 对 $R(\omega)$ 反变换得 $r(t)$。
+&emsp;&emsp;上面的方法都是要用傅里叶变换的，一般都是用上面的方法。但是如果遇到了**周期信号**，特别是正弦信号，可以不用傅里叶变换就求出系统的响应；这其实就是电路理论里面的相量法解正弦稳态电路。这种方法的核心思想就是：若 $e(t)=A\cos(\omega t+\varphi)$，则 $r(t)=A|H(\omega)|\cos(wt+\varphi+\varphi(\omega))$。其中 $H(\omega)=|H(\omega)|\varphi(\omega)$。
+<blockquote>
+&emsp;&emsp;对此书上有一个例子。我们仍然用 $\dot E=E\angle\varphi$（相量）记 $E\mathrm e^{\mathrm j(\omega t+\varphi)}$，对于 $H(\omega)$ 就记成 $|H(\omega)|\angle\varphi(\omega)$。当激励为 $e(t)=2+2\cos t+2\cos 2t$ 时，将其分成三个相量 $\dot E _0=2$，$\dot E _1=2\angle 0^\circ$，$\dot E _2=2\angle 0^\circ$。如果通过一些别的手段能够得到 $H(0)=2\angle 0^\circ$，$H(1)=1\angle-\mathrm j90^\circ$，$H(2)=0\angle 0^\circ$，就能够分别得到 $\dot R _0=4\angle 0^\circ$，$\dot R _1=2\angle -\mathrm j90^\circ$，$\dot R _2=0\angle 0^\circ$。转换成时域并合并，就有 $r(t)=4+2\cos\left(t-\cfrac{\pi}{2}\right)=4+2\sin t$。
+</blockquote>
+
+**二、理想低通滤波器的冲激响应与阶跃响应**\
+&emsp;&emsp;归一化理想低筒滤波器的频响函数 $H(\omega)$ 满足 $|H(\omega)|=\varepsilon(t+\omega _{c0})-\varepsilon(t-\omega _{c0})$，$\varphi(\omega)=-\omega t _0$。它禁止一切频率高于 $\omega _{c0}$ 的分量通过，对于频率小于 $\omega _{c0}$ 的分量，会延时 $t _0$ 时间。这非常符合人们对理想滤波器的构想，既实现了滤波，又考虑了物理上不可忽略的延时因素。\
+&emsp;&emsp;通过对这个频响函数进行分析，即傅里叶反变换，我们可以求出单位冲击响应 $h(t)$，也可以用其他方法求出单位阶跃响应。两个响应的图像都很符合我们的预期，但是并不完全符合，因为图象总是会有抖动。同时，我们发现能够确定 $t<0$ 对应响应的值，而冲激响应只在 $t=0$ 作用，阶跃响应只在 $t>0$ 作用，因而理想滤波器**不满足因果律**，是不可实现的。
+
+## $Chapter5$&emsp;连续时间系统的复频域分析
 
 $\boxed{\mathrm{To\ Be\ Continued}}$
