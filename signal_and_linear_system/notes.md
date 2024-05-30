@@ -87,7 +87,7 @@ $$f(t)=\int _0^tf(\tau)\delta(t-\tau)\mathrm d\tau=\int _{-\infty}^{+\infty}f(\t
 &emsp;&emsp;因此，激励 $e(t)$ 时，系统的响应为
 $$r(t) = \int _0^te(t)h(t-\tau)\mathrm d\tau\tag{2.2}$$
 
-&emsp;&emsp;式 $(2.2)$ 就是**卷积积分**。
+&emsp;&emsp;式 $(2.2)$ 就是**卷积积分**。注意这里求出来的 $r(t)$ 是**零状态响应**，因为推导过程中用到的 $h(t)$ 是零状态响应。
 
 <blockquote>
 &emsp;&emsp;<strong>冲激响应</strong>是激励为 $\delta(t)$ 的<strong>零状态响应</strong>。如果可以知道一个系统的单位冲击响应 $h(t)$，根据式 $(2.2)$ 可以直接从激励得到响应，而不需要知道系统的其它细节。
@@ -150,7 +150,7 @@ $$f(t)=\cfrac{1}{2}\sum_{n=-\infty}^{+\infty}A _n\mathrm e^{\mathrm j(n\varOmega
 $$f(t)=\cfrac{1}{2\pi}\int _{-\infty}^{+\infty} F(\omega)\mathrm e^{\mathrm j\omega t}\mathrm d\omega\tag{3.5}$$
 
 <blockquote>
-&emsp;&emsp;有的地方也把 $F(\omega)$ 写作 $F(\mathrm j\omega)$。
+&emsp;&emsp;有的地方也把 $F(\omega)$ 写作 $F(\mathrm j\omega)$。为了方便，后面都记作 $F(\omega)$。
 </blockquote>
 
 &emsp;&emsp;其中“系数” $F(\omega)$ 可以通过下式求得：
@@ -326,5 +326,28 @@ $$f(t)=\mathscr L^{-1}\left\lbrace\cfrac{1+s}{s^2}\right\rbrace=\mathscr L^{-1}\
 </blockquote>
 
 **三、拉普拉斯变换的性质**
+&emsp;&emsp;拉普拉斯变换是通过傅里叶变换得到的，所以很多性质都可以参考傅里叶变换。应用于连续时间系统的分析，拉普拉斯主要有两个性质和傅里叶变换中稍有区别：\
+**1.时域微分性质**\
+&emsp;&emsp;时域微分能够计入初始值，这是单边傅里叶变换 $(5.3)$ 的特性决定的：
+$$\mathscr L\left\lbrace\cfrac{\mathrm d^nf(t)}{\mathrm dt}\right\rbrace=s^nF(s)-s^{n-1}f(0^-)-s^{n-1}f ' (0^-)-\cdots-f^{(n-1)}(0^-)\tag{5.5}$$
+
+&emsp;&emsp;$n$ 阶微分需要 $n$ 个初始值。因此已知初始值，可以用拉普拉斯变换来求系统的全响应。\
+**2.时域积分性质**\
+&emsp;&emsp;一般拉普拉斯变换处理的都是 $t=0$ 开始的有始信号 $f(t)$，因而 $t<0^-$ 时 $f(t)=0$。对于这样的 $f(t)$，满足下面的积分性质：
+$$\mathscr L\left\lbrace\int _{-\infty}^tf(\tau)\mathrm d\tau=\cfrac{F(s)}{s}\right\rbrace\tag{5.6}$$
+
+## $Chapter6$&emsp;连续时间系统的系统函数
+&emsp;&emsp;这一章主要涉及到系统函数的**极零图**和系统**稳定性**。系统函数 $H(s)=\cfrac{N(s)}{D(s)}$，使得 $N(s)=0$ 的根称为**零点**，使得 $D(s)=0$ 的根称为**极点**。将极点（用×）和零点（用○）在复平面（对拉普拉斯变换而言应该说 $s$ 平面更合适）中标出来，就得到系统的极零图。\
+&emsp;&emsp;系统的稳定性指的是一个系统在激励函数有界时，响应函数也有界。从**零输入响应**上来看，系统一开始有初始储能，将按照系统的固有频率进行响应。极点就反映了这种固有频率，$D(s)$ 一个 $s=\sigma+\mathrm j\omega$ 的单根就对应了零输入响应中的一个分量 $\mathrm e^{\sigma t}(C _1\sin \omega t+C _2\cos \omega t)\varepsilon(t)$。要保证这些零输入响应的分量都是有界的，即 $\sigma\leq 0$。对于多重根，响应分量前面会多出 $t^k$ 因子，所以需要 $\sigma < 0$。\
+&emsp;&emsp;从**零状态响应**上来看，系统稳定与系统的冲激响应 $h(t)$ 绝对可积是等价的。
+$$\int _{-\infty}^{+\infty}|h(\tau)|<\infty\tag{6.1}$$
+
+&emsp;&emsp;与数学中不同的一点是，这里的绝对可积貌似并不要求积分存在。这也就是说，$h(t)=\sin t+2\cos t$ 这样的冲激响应也被认为是绝对可积的。\
+&emsp;&emsp;无论是从**零输入响应**还是**零状态响应**来看，两者的结果是可以相互转换的。冲激响应在 $0^-$ 时间系统中属于零状态响应，在 $0^+$ 时间系统中就属于零输入响应。$h(t)$ 是否绝对可积，就看它在 $0^+$ 时间系统的自由响应是否是有界的。
+<blockquote>
+&emsp;&emsp;有界并不等同于绝对可积，比如 $h(t)=\arctan t\varepsilon(t)$ 这样的响应。但是我们在求解响应的时候一般只能得到 $\mathrm e^{\sigma t}(C _1\sin \omega t+C _2\cos \omega t)\varepsilon(t)$ 这种形式的结果，这种结果有界和绝对可积是等价的。
+</blockquote>
+
+## $Chapter 7$&emsp;离散时间系统的时域分析
 
 $\boxed{\mathrm{To\ Be\ Continued}}$
