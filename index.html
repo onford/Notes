@@ -103,15 +103,16 @@
         max-height: 100%;
     }
     
-    a {
+    a.content {
+        font-size: 17px;
         text-decoration: none;
     }
     
-    a:hover {
+    a.content:hover {
         text-decoration: underline;
     }
     
-    a:focus,
+    a.content:focus,
     input:focus,
     select:focus,
     textarea:focus {
@@ -402,6 +403,56 @@
             right:50%;
             width: 30%;
         }
+        .toc {
+        position: fixed;
+        right: 2%;
+        top: 80px;
+        min-width: 300px;
+        }
+        #toc {
+        margin: 0;
+        padding-left: 15px;
+        box-sizing: border-box;
+        }
+        li {
+        height: 30px;
+        box-sizing: border-box;
+        list-style: none;
+        }
+
+        a{
+        color: #333;
+        text-decoration: none;
+        font-size: 14px;
+        }
+
+        .li-1 {
+        padding-left: 0px;
+        }
+
+        .li-2 {
+        padding-left: 8px;
+        }
+
+        .li-3 {
+        padding-left: 16px;
+        }
+
+        .li-4 {
+        padding-left: 24px;
+        }
+
+        .li-5 {
+        padding-left: 32px;
+        }
+
+        .li-6 {
+        padding-left: 40px;
+        }
+
+        .li-active {
+        color: #f36;
+        }
     </style>
 <title>学习笔记</title> 
 </head> 
@@ -421,23 +472,25 @@
             
         </td>
         <td rowspan="2">
-            <div style="width: 100%;overflow:hidden;height:100%;margin:auto;"><iframe src="digital_logic/notes.html" width="102%" height="100%" frameborder="0" name="smallwindow"></iframe></div>
+            <div style="width: 100%;overflow:hidden;height:100%;margin:auto;"><iframe src="digital_logic/notes.html" width="102%" height="100%" frameborder="0" name="smallwindow" id="114514"></iframe></div>
         </td>
+        <td rowspan="2" width="20%"><div class="toc"></div></td>
     </tr>
     <tr>
         <td bgcolor="grey">
             <div><h1>目录&emsp;Content</h1>
-            <p><a href="digital_logic/notes.html" target="smallwindow"><font color="pink" id="cont1" onclick="changeCont(1)">$\boxed{数字电路与逻辑设计}$</font></a></p>
-            <p><a href="university_physics/notes.html" target="smallwindow"><font color="lightblue" id="cont2" onclick="changeCont(2)">$\boxed{大学物理（下）}$</font></a></p>
-            <!-- <p><a href="https://wangrui2004.gitee.io/homepage_-wr/" target="_blank"><font color="lightblue" id="cont3" onclick="changeCont(3)">$\boxed{未完待续}$</font></a></p>
-            <p><a href="https://wangrui2004.gitee.io/comment/" target="smallwindow"><font color="lightblue" id="cont4" onclick="changeCont(4)">$\boxed{这是什么？点一下}$</font></a></p> -->
-            <p><a href="algorithm_design/notes.html" target="smallwindow"><font color="lightblue" id="cont5" onclick="changeCont(5)">$\boxed{算法设计与分析}$</font></a></p>
-            <p><a href="circuit_theory/notes.html" target="smallwindow"><font color="lightblue" id="cont6" onclick="changeCont(6)">$\boxed{电路理论}$</font></a></p>
-            <p><a href="signal_and_linear_system/notes.html" target="smallwindow"><font color="lightblue" id="cont7" onclick="changeCont(7)">$\boxed{信号与线性系统}$</font></a></p></div>
+            <p><a href="digital_logic/notes.html" target="smallwindow" class="content"><font color="pink" id="cont1" onclick="changeCont(1)">$\boxed{数字电路与逻辑设计}$</font></a></p>
+            <p><a href="university_physics/notes.html" target="smallwindow" class="content"><font color="lightblue" id="cont2" onclick="changeCont(2)">$\boxed{大学物理（下）}$</font></a></p>
+            <!-- <p><a href="https://wangrui2004.gitee.io/homepage_-wr/" target="_blank" class="content"><font color="lightblue" id="cont3" onclick="changeCont(3)">$\boxed{未完待续}$</font></a></p>
+            <p><a href="https://wangrui2004.gitee.io/comment/" target="smallwindow" class="content"><font color="lightblue" id="cont4" onclick="changeCont(4)">$\boxed{这是什么？点一下}$</font></a></p> -->
+            <p><a href="algorithm_design/notes.html" target="smallwindow" class="content"><font color="lightblue" id="cont5" onclick="changeCont(5)">$\boxed{算法设计与分析}$</font></a></p>
+            <p><a href="circuit_theory/notes.html" target="smallwindow" class="content"><font color="lightblue" id="cont6" onclick="changeCont(6)">$\boxed{电路理论}$</font></a></p>
+            <p><a href="signal_and_linear_system/notes.html" target="smallwindow" class="content"><font color="lightblue" id="cont7" onclick="changeCont(7)">$\boxed{信号与线性系统}$</font></a></p></div>
         </td>
     </tr>
 
 </table>
+<script src="index.js"></script>
 </body>
 </html>
 
