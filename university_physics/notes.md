@@ -1,7 +1,34 @@
 <style>
-    h1,h2{
+    h1,h2,h3,h4{
         border-bottom : none;
-        font-family: "Times New Roman","宋体";
+        font-family: "Times New Roman","黑体";
+        font-weight: bold;
+        color: #4f4f4f;
+        margin-top: 24px;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    h1{
+        font-size:30px;
+        margin-bottom: 0px;
+    }
+    h2{
+        font-size:24px;
+        margin-bottom: -2px;
+    }
+    h3{
+        font-size:20px;
+        margin-bottom: -5px;
+    }
+    h4{
+        font-size:17px;
+        margin-bottom: -8px;
+    }
+    hr{
+        margin: 24px 0;
+        border: none;
+        border-bottom: 1px solid #ddd;
     }
     p,div{
         font-family: "Times New Roman","宋体";
@@ -40,7 +67,7 @@
 
 # 大学物理（下）笔记
 ## 部分常用物理常量的计算值
-
+<br>
 <table align="center">
     <tr>
         <th>物理量</th>
@@ -104,11 +131,15 @@
     </tr>
 </table>
 
+---
+
 <bw>wr按：\
 这一部笔记，主要记录学习过程中的一些想法，以便后续查看时能回忆起当时的理解，并加深印象。实际上并不全面，只是自己想到的一些东西。其中的光学篇，由于在高中时期没有接触过，因此难免在理解上出现一些问题。</bw>
 
+---
+
 ## $Chapter9$&emsp;恒定磁场
-**一、毕奥-萨伐尔定律**\
+### 毕奥-萨伐尔定律
 &emsp;&emsp;磁场和电场在很多性质上是有共性的，很多时候可以拿它们两个相互对比。\
 &emsp;&emsp;恒定磁场最基础的公式是毕奥-萨伐尔定律：
 $$\textrm{d}\boldsymbol B=\cfrac{\mu_0}{4\pi}\cfrac{I\textrm{d}\boldsymbol l\times\boldsymbol e_r}{r^2}\tag{9.1}$$
@@ -122,8 +153,8 @@ $$B=\cfrac{\mu_0I}{2\pi r}\tag{9.3}$$
 &emsp;&emsp;通过毕奥-萨伐尔定律，还能够算得半径为$R$的圆环电流$I$在其轴线上坐标为$x$的点处产生的磁场大小
 $$B=\cfrac{\mu_0I}{2(R^2+x^2)^{3/2}}\tag{9.4}$$
 
-&emsp;&emsp;这个能够自行推导，感觉就足够了，倒也不是特别好记。\
-**二、磁偶极子**\
+&emsp;&emsp;这个能够自行推导，感觉就足够了，倒也不是特别好记。
+### 磁偶极子
 &emsp;&emsp;磁偶极子可以认为是一个平面环形电流，只有当这个环的线度在问题中可以忽略时，才能把它作为磁偶极子处理。\
 &emsp;&emsp;这很容易让我们联想到电偶极子。两者之间的对比如下：
 <table align="center">
@@ -152,7 +183,7 @@ $$B=\cfrac{\mu_0I}{2(R^2+x^2)^{3/2}}\tag{9.4}$$
 
 &emsp;&emsp;电偶极子在电场中受到力矩作用，达到稳定平衡状态时电矩与电场方向相同，能够解释有极分子的取向极化；磁偶极子在磁场中受到力矩作用，达到稳定平衡状态时磁矩与磁场方向相同，能够解释顺磁质的磁化。
 
-**三、磁场的高斯定理与安培环路定理**\
+### 磁场的高斯定理与安培环路定理
 &emsp;&emsp;磁场的高斯定理
 $$\oint_S \boldsymbol{B\ \cdot}\mathrm{d}\boldsymbol{S}=0\tag{9.5}$$
 
@@ -162,7 +193,7 @@ $$\oint_S \boldsymbol{E\ \cdot}\mathrm{d}\boldsymbol{S}=\cfrac{q}{\varepsilon_0}
 &emsp;&emsp;在恒定磁场中，安培环路定理也经常被应用：
 $$\oint_L\boldsymbol{B\ \cdot}\mathrm{d}\boldsymbol{l}=\mu_0I\tag{9.7}$$
 
-**四、洛伦兹力与安培力**\
+### 洛伦兹力与安培力
 &emsp;&emsp;主要想谈谈其矢量式中各个量摆放顺序的问题。\
 &emsp;&emsp;洛伦兹力
 $$\boldsymbol{F}=q\boldsymbol{v\ \times B}\tag{9.8}$$
@@ -172,10 +203,10 @@ $$\boldsymbol{F}=I\boldsymbol{L\ \times B}\tag{9.9}$$
 
 &emsp;&emsp;观察$(9.8)$式和$(9.9)$式，发现它们都能写成“电量·**运动量×场量**”的形式。其中**粗体**为矢量。
 
-**五、磁化强度$\boldsymbol{M}$与磁场强度$\boldsymbol{H}$**\
+### 磁化强度$\boldsymbol{M}$与磁场强度$\boldsymbol{H}$
 &emsp;&emsp;我们通常习惯于用磁感应强度$\boldsymbol{B}$来描述磁场，用电场强度$\boldsymbol{E}$来描述电场。当电磁场中存在介质的时候，这种描述方法是不好的。\
-&emsp;&emsp;磁化强度$\boldsymbol{M}$与磁场强度$\boldsymbol{H}$是为了研究磁介质的磁化，在磁感应强度$\boldsymbol{B}$的基础上上又增加的两个磁场量。在研究电介质的极化时也曾引入电极化强度$\boldsymbol{P}$和电位移矢量$\boldsymbol{D}$.下面对这些量进行对比分析。\
-**1.磁化强度$\boldsymbol{M}$与电极化强度$\boldsymbol{P}$**\
+&emsp;&emsp;磁化强度$\boldsymbol{M}$与磁场强度$\boldsymbol{H}$是为了研究磁介质的磁化，在磁感应强度$\boldsymbol{B}$的基础上上又增加的两个磁场量。在研究电介质的极化时也曾引入电极化强度$\boldsymbol{P}$和电位移矢量$\boldsymbol{D}$.下面对这些量进行对比分析。
+#### 磁化强度$\boldsymbol{M}$与电极化强度$\boldsymbol{P}$
 &emsp;&emsp;磁化强度$\boldsymbol{M}$的定义与电极化强度$\boldsymbol{P}$的定义式非常相似：
 
 $$\boldsymbol{M}=\cfrac{\sum\limits_{i=1}^n\boldsymbol{m}_ i }{\Delta V}\qquad \boldsymbol{P}=\cfrac{\sum\limits _{i=1}^n\boldsymbol{p}_i }{\Delta V}\tag{9.10}$$
@@ -187,8 +218,8 @@ $$\oint_ L\boldsymbol{M\ \cdot}\mathrm{d}\boldsymbol l=\sum I'\tag{9.11}$$
 &emsp;&emsp;类似地，电极化强度$\boldsymbol{P}$描述电介质在外电场中产生的极化情况，而电介质极化时会产生束缚电荷$q'$.这两者有如下的联系：
 $$\oint_ S\boldsymbol{P\ \cdot}\mathrm{d}\boldsymbol S=-\sum q'\tag{9.12}$$
 
-&emsp;&emsp;其中，$\sum q'$表示高斯面$S$内所有的束缚电荷之和。式$(9.11)$与$(9.12)$在形式上非常相似，需要注意的是式$(9.12)$<st>多出了一个负号</st>。\
-**2.磁场强度$\boldsymbol H$和电位移矢量$\boldsymbol D$**\
+&emsp;&emsp;其中，$\sum q'$表示高斯面$S$内所有的束缚电荷之和。式$(9.11)$与$(9.12)$在形式上非常相似，需要注意的是式$(9.12)$<st>多出了一个负号</st>。
+#### 磁场强度$\boldsymbol H$和电位移矢量$\boldsymbol D$
 &emsp;&emsp;磁场强度$\boldsymbol{H}$，给我带来的直观感受是，它是磁感应强度$\boldsymbol{B}$在磁介质存在情况下，为了保证某种连续性而定义的表征磁场的量。这是它的定义式
 $$\boldsymbol{H}=\cfrac{\boldsymbol B}{\mu_r\mu_0}=\cfrac{\boldsymbol B}{\mu}\tag{9.13}$$
 
@@ -212,8 +243,8 @@ $$\oint_ S\boldsymbol{D\ \cdot}\mathrm{d}\boldsymbol S=\sum q\tag{9.18}$$
 
 $$\oint_ S(\boldsymbol D-\boldsymbol P)\ \boldsymbol\cdot\mathrm{d}\boldsymbol S=\sum(q+q')=\oint _S \varepsilon_0\boldsymbol E\boldsymbol\cdot\mathrm{d}\boldsymbol l\tag{9.19}$$
 
-&emsp;&emsp;式$(9.18)$中，$\sum q$表示高斯面$S$内所有的自由电荷之和。\
-**六、磁化电流面密度**\
+&emsp;&emsp;式$(9.18)$中，$\sum q$表示高斯面$S$内所有的自由电荷之和。
+### 磁化电流面密度
 &emsp;&emsp;首先应指出，电流面密度<st>不是</st>电流密度。通常意义上的电流$I$单位是$\mathrm{A}$，流过一根直线，沿着电流垂面方向截得一个点。电流流过一个平面时，沿着电流垂面方向截得一条直线，因此用电流面密度$i$描述，单位$\mathrm{A/m}$.电流流过一个立体时，沿电流垂面方向截得一个平面，因此用电流密度$j$描述，单位$\mathrm{A/m^2}$.\
 &emsp;&emsp;磁化电流是上面的第二种，用磁化电流面密度$i_\mathrm{m}$描述。一般要求$i_\mathrm{m}$有两种思路，第一种是根据定义：
 $$i_\mathrm{m}=\cfrac{\mathrm{d}I}{\mathrm{d}L}=\cfrac{I}{L}\tag{9.20}$$
@@ -224,7 +255,7 @@ $$\boldsymbol i _\mathrm{m}=\boldsymbol{M\ \times e} _\mathrm{n}\tag{9.21}$$
 &emsp;&emsp;其中$\boldsymbol e_\mathrm{n}$是磁介质表面法向单位矢量。此时磁化电流面密度的大小$i_\mathrm{m}=M$.
 
 ## $Chapter10$&emsp;电磁感应
-**一、感应电动势**\
+### 感应电动势
 &emsp;&emsp;电源电动势，是**非静电场**场强$\boldsymbol E_\mathrm{k}$从负极到正极的曲线积分：
 $$\mathscr{E}=\int _-^+\boldsymbol E _\mathrm{k}\cdot\mathrm{d}\boldsymbol l\tag{10.1}$$
 
@@ -239,8 +270,8 @@ $$\mathscr{E} _ \mathrm i=-\cfrac{\mathrm d\varPhi}{\mathrm dt}\tag{10.3}$$
 &emsp;&emsp;如果导体构成的回路不随时间变化，即$S$是常量，那么式$(10.3)$也可以写成：
 $$\mathscr E _ \mathrm i =-\int \cfrac{\partial\boldsymbol B}{\partial t}\boldsymbol\cdot\mathrm d\boldsymbol S\tag{10.4}$$
 
-&emsp;&emsp;这个在感生电动势中使用得比较多。\
-**二、磁场能量**\
+&emsp;&emsp;这个在感生电动势中使用得比较多。
+### 磁场能量
 &emsp;&emsp;和电场一样，磁场本身也具有能量。
 <table align="center">
     <caption>表 电场和磁场能量对比</caption>
@@ -261,7 +292,7 @@ $$\mathscr E _ \mathrm i =-\int \cfrac{\partial\boldsymbol B}{\partial t}\boldsy
     </tr>
 </table>
 
-**三、麦克斯韦方程组（Maxwell\'s Equations）**\
+### 麦克斯韦方程组（Maxwell\'s Equations）
 &emsp;&emsp;麦克斯韦方程组的前两式表示了电场、磁场本身的特性。电场有源，磁场无源：
 $$\oint _ S\boldsymbol{D\cdot}\mathrm d\boldsymbol S=\sum q=\int _ V \rho\mathrm dV\tag{10.5}$$
 
@@ -277,7 +308,7 @@ $$\oint _ L\boldsymbol{H\cdot}\mathrm d\boldsymbol l=I+I _ d=\int _ S\left(\bold
 &emsp;&emsp;同时，注意**位移电流是真实存在的**。意思不是说位移电流是一种真正意义上的电流，这是一个比较抽象的事情。
 
 ## $Chapter 11$&emsp;振动与波动
-**一、关于频率相同、方向垂直的简谐运动合成**\
+### 频率相同、方向垂直的简谐运动合成
 &emsp;&emsp;运动可以用参数方程描述：
 $$\begin{cases}
 x=A _ 1\cos(\omega t+\varphi _ 1)\\\\ y=A _ 2\cos(\omega t+\varphi _ 2)\end{cases}\tag{11.1}$$
@@ -293,7 +324,7 @@ $$\begin{aligned}\sin^2(\varphi _2-\varphi _1)&=\sin^2(\theta _2-\theta _1)\\\\
 &=\cfrac{x^2}{A _1^2}+\cfrac{y^2}{A _2^2}-\cfrac{2xy}{A _1A _2}\cos(\theta _2-\theta _1)\\\\
 &=\cfrac{x^2}{A _1^2}+\cfrac{y^2}{A _2^2}-\cfrac{2xy}{A _1A _2}\cos(\varphi _2-\varphi _1)\end{aligned}\tag{11.3}$$
 
-**二、关于阻尼振动**\
+### 阻尼振动
 &emsp;&emsp;阻尼振动的方程为
 $$\cfrac{\mathrm{d}^2x}{\mathrm dt^2}+2\beta\cfrac{\mathrm dx}{\mathrm dt}+\omega _0^2x=0\tag{11.4}$$
 
@@ -320,12 +351,12 @@ $$\lambda _{1,2}=-\beta\tag{11.10}$$
 &emsp;&emsp;也可以由此得到运动方程$(11.4)$的解为
 $$x=\mathrm e^{-\beta t}(A _0+A _1t)\tag{11.11}$$
 
-&emsp;&emsp;可以统一$(11.4)$的解的形式为$x=\mathrm e^{-\beta t}f(t)$.临界阻尼情况下的$f(t)$是多项式，过阻尼情况下的$f(t)\sim \mathrm e^{|\omega'|t}$ 是指数阶，所以临界阻尼衰减得比过阻尼快。\
-**三、波的能量**\
+&emsp;&emsp;可以统一$(11.4)$的解的形式为$x=\mathrm e^{-\beta t}f(t)$.临界阻尼情况下的$f(t)$是多项式，过阻尼情况下的$f(t)\sim \mathrm e^{|\omega'|t}$ 是指数阶，所以临界阻尼衰减得比过阻尼快。
+### 波的能量
 &emsp;&emsp;机械波$y(x,t)=A\cos[\omega(t-\cfrac{x}{u})+\varphi]$在密度为$\rho$的介质中传播时，在任意时刻，某一质元的动能和势能都是相等的。\
 &emsp;&emsp;波的平均能量密度$\overline w=\cfrac{1}{2}\rho A^2\omega^2$.\
-&emsp;&emsp;波的平均能流密度$I=\overline wu=\cfrac{1}{2}\rho A^2\omega^2u$.\
-**四、多普勒效应**\
+&emsp;&emsp;波的平均能流密度$I=\overline wu=\cfrac{1}{2}\rho A^2\omega^2u$.
+### 多普勒效应
 &emsp;&emsp;当波源（Source）和接收器（Receiver）以接近速度$v _S$和$v _R$相对运动时，有
 $$\nu _R=\cfrac{u+v _R}{u-v _S}\nu _S\tag{11.12}$$
 
@@ -338,7 +369,7 @@ $$\nu _R=\sqrt{\cfrac{c+v}{c-v}}\nu _S\tag{11.14}$$
 
 &emsp;&emsp;方便记忆，也可以变形为如下形式：
 $$\cfrac{\nu _R}{\sqrt{c+v}}=\cfrac{\nu _S}{\sqrt{c-v}}\tag{11.15}$$
-**五、其他想说的**\
+### 其他想说的
 &emsp;&emsp;劲度系数分别为$k _1,k _2$的两根轻弹簧，首尾相连（串行连接）构成劲度系数为$\cfrac{k _1k _2}{k _1+k _2}$的弹簧。如果是把头与头相连、尾与尾相连（并行连接），则构成劲度系数为$k _1+k _2$的弹簧。
 
 ## $Chapter 13$&emsp;波动光学
@@ -346,8 +377,8 @@ $$\cfrac{\nu _R}{\sqrt{c+v}}=\cfrac{\nu _S}{\sqrt{c-v}}\tag{11.15}$$
 &emsp;&emsp;这一章需要牢牢扣住<st>光程差$\delta$</st>这一个要点。光程差可以与相位差产生联系：
 $$\delta=\cfrac{\lambda}{2\pi}\Delta\varphi\tag{13.1}$$
 
-&emsp;&emsp;从而判断两束光波在某处的叠加情况。这一章的另外一个要点是<st>近似处理</st>。\
-**一、双缝干涉（杨氏双缝干涉）**\
+&emsp;&emsp;从而判断两束光波在某处的叠加情况。这一章的另外一个要点是<st>近似处理</st>。
+### 双缝干涉（杨氏双缝干涉）
 &emsp;&emsp;距离为$d$的两个小孔，将它们看作两个**初相位相同**的光源，它们发出的光的强度在距离为$D$的屏幕上发生相干叠加。光程差：
 $$\delta=nr _1-nr _2\approx nd\sin\theta\tag{13.2}$$
 
@@ -369,19 +400,19 @@ $$I _\theta=I _0\cos^2\beta\tag{13.6}$$
 
 &emsp;&emsp;其中的$\beta=\cfrac{\pi nd\sin\theta}{\lambda}$.一般实验都在$n\approx 1$的空气中进行，$\beta=\cfrac{\pi d\sin\theta}{\lambda}$.显然，$\cos^2\beta=1$对应明纹，$\cos^2\beta=0$对应暗纹。
 
-**二、分振幅干涉**\
+### 分振幅干涉
 &emsp;&emsp;先考虑**等倾干涉**，同样可以记住一个基本公式：
 $$\delta=2nd\cos\gamma\tag{13.7}$$
 
 &emsp;&emsp;实际如果两个反射面中只有一处发生半波损失，$\delta$还应该加上$\cfrac{\lambda}{2}$.这个公式当然可以现场推导，但是花费的时间会比较多，建议记住。可以通过这个推导明暗纹条件。\
 &emsp;&emsp;**等厚干涉**就是对每一个厚度$d$，都考虑式$(13.7)$，每个厚度对应相同的一个光程差$\delta$.\
-&emsp;&emsp;对于等倾干涉来说，$\gamma$是一个变量，$\delta$随$\gamma$的变化而不同，因此相同$\gamma$的点（一个一个同心圆）对应相同的$\delta$，从而干涉情况相同。对于等厚干涉来说，$\gamma=0$（即只考虑正入射），但是$d$是变量，$\delta$随$d$的变化而不同，因此相同$d$的点（一系列平行线）对应相同的$\delta$，从而干涉情况相同。\
-**三、单缝衍射（单缝夫琅禾费衍射）**\
+&emsp;&emsp;对于等倾干涉来说，$\gamma$是一个变量，$\delta$随$\gamma$的变化而不同，因此相同$\gamma$的点（一个一个同心圆）对应相同的$\delta$，从而干涉情况相同。对于等厚干涉来说，$\gamma=0$（即只考虑正入射），但是$d$是变量，$\delta$随$d$的变化而不同，因此相同$d$的点（一系列平行线）对应相同的$\delta$，从而干涉情况相同。
+### 单缝衍射（单缝夫琅禾费衍射）
 &emsp;&emsp;公式的推导略显复杂，我们只需要记住结果：产生与狭缝平行的干涉条纹，强度为
 $$I _\theta=I _0 \left(\cfrac{\sin\alpha}{\alpha}\right)^2\tag{13.8}$$
 
-&emsp;&emsp;如果实验在$n=1$的环境下进行，$\alpha=\cfrac{\pi a\sin\theta}{\lambda}$.如果$n\neq 1$也一样，$\lambda$代表在介质中的波长。根据该式可以推出各暗纹（极小）的位置，明纹（极大）的位置也可以近似地计算。\
-**四、多缝衍射**\
+&emsp;&emsp;如果实验在$n=1$的环境下进行，$\alpha=\cfrac{\pi a\sin\theta}{\lambda}$.如果$n\neq 1$也一样，$\lambda$代表在介质中的波长。根据该式可以推出各暗纹（极小）的位置，明纹（极大）的位置也可以近似地计算。
+### 多缝衍射
 &emsp;&emsp;多缝衍射需要同时考虑干涉和衍射的结果，光强公式为：
 $$I _\theta=I _0\left(\cfrac{\sin\alpha}{\alpha}\right)^2\left(\cfrac{\sin N\beta}{\sin\beta}\right)^2\tag{13.9}$$
 

@@ -1,0 +1,62 @@
+h1,h2,h3,h4{
+    border-bottom : none;
+    font-family: "Times New Roman","黑体";
+    font-weight: bold;
+    color: #4f4f4f;
+    margin-top: 24px;
+    margin-right: 0px;
+    margin-bottom: -8px;
+    margin-left: 0px;
+}
+h1{
+    font-size:30px;
+}
+h2{
+    font-size:24px;
+}
+h3{
+    font-size:20px;
+    line-height:28px;
+}
+h4{
+    font-size:17px;
+    line-height:26px;
+}
+hr{
+    margin: 24px 0;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+p,div{
+    font-family: "Times New Roman","宋体";
+    font-size:17px;
+}
+bw{
+    font-family: "Times New Roman","仿宋";
+    font-size:17px;
+}
+st{
+    font-family:"Times New Roman","宋体";
+    color: red;
+}
+blockquote{
+    font-family:"Times New Roman","仿宋";
+    font-size:17px;
+    border-left: 5px solid #ccc;
+}
+table,th,td{
+    padding: 0;
+    font-size:17px;
+    font-family:"Times New Roman","宋体";
+    border: 1px solid;
+    text-align:center;
+}
+caption{
+    font-family:"Times New Roman","黑体";
+    font-size:17px;
+}
+code {
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 2px;
+}

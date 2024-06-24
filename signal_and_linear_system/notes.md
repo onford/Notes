@@ -1,11 +1,38 @@
 <style>
-    h1,h2{
+    h1,h2,h3,h4{
         border-bottom : none;
-        font-family: "Times New Roman","宋体";
+        font-family: "Times New Roman","黑体";
+        font-weight: bold;
+        color: #4f4f4f;
+        margin-top: 24px;
     }
-    p,div{
+    h1{
+        font-size:30px;
+        /* margin-bottom: 0px; */
+    }
+    h2{
+        font-size:24px;
+        /* margin-bottom: -2px; */
+    }
+    h3{
+        font-size:20px;
+        /* margin-bottom: -5px; */
+    }
+    h4{
+        font-size:17px;
+        /* margin-bottom: -8px; */
+    }
+    hr{
+        margin: 24px 0;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
+    p,div,li{
         font-family: "Times New Roman","宋体";
         font-size:17px;
+    }
+    a,a:visited {
+        color: #6795b5;
     }
     bw{
         font-family: "Times New Roman","仿宋";
@@ -32,15 +59,10 @@
         font-size:17px;
     }
     code {
-	font-size: 16px;
-	line-height: 30px;
-	background-color: #ebeaea;
-	padding-left: 0.25em;
-	padding-right: 0.25em;
-	padding-top: 0.15em;
-	padding-bottom: 0.15em;
-	border-radius: 3px;
-}
+	    color: #c7254e;
+        background-color: #f9f2f4;
+        border-radius: 2px;
+    }
 </style>
 
 # 信号与线性系统
@@ -48,12 +70,16 @@
 <bw>wr按：\
 《信号与线性系统》这门课全程依赖电路知识，以《电路理论》初级篇为先导，其内容相当于电路理论中部分内容的详细拓展。这一篇笔记会记录我自己的一些观点和看法（专门记我看不懂的）。</bw>
 
-## $Chater1$&emsp;绪论
-&emsp;&emsp;一个系统存在着激励 $e(t)$ 和响应 $r(t)$。\
-**一、系统具有的性质**\
-**线性性**：一个系统具备线性性，其抽象表述为：若 $e(t)\rightarrow r(t)$，则 $k _1e _1(t)+k _2e _2(t)\rightarrow k _1r _1(t) +k _2r _2(t)$。\
-**非时变性**：一个系统具备非时变性（时不变性），其抽象表述为：若 $e(t)\rightarrow r(t)$，则 $e(t-t _0)\rightarrow r(t-t _0)$。\
-**因果性**：一个系统在 $t$ 时刻的响应，只和 $t$ 时刻及其之前的时刻的激励有关。
+---
+## $Chapter1$&emsp;绪论
+&emsp;&emsp;一个系统存在着激励 $e(t)$ 和响应 $r(t)$。
+### 系统具有的性质  
+#### 线性性
+&emsp;&emsp;一个系统具备线性性，其抽象表述为：若 $e(t)\rightarrow r(t)$，则 $k _1e _1(t)+k _2e _2(t)\rightarrow k _1r _1(t) +k _2r _2(t)$。
+#### 非时变性
+&emsp;&emsp;一个系统具备非时变性（时不变性），其抽象表述为：若 $e(t)\rightarrow r(t)$，则 $e(t-t _0)\rightarrow r(t-t _0)$。
+#### 因果性
+&emsp;&emsp;一个系统在 $t$ 时刻的响应，只和 $t$ 时刻及其之前的时刻的激励有关。
 
 &emsp;&emsp;上面的三个性质中，因果性是最好判定的。只需看 $r(t)$ 的表达式即可。线性性也是好判定的，直接根据抽象定义，构造两个激励 $e _1(t)$ 和 $e _2(t)$ 并判断是否具有该性质即可。\
 &emsp;&emsp;关于时不变性的判定，可以构造两个激励 $e _1(t)$ 和 $e _2(t)$，其中 $e _2(t)$ 是 $e _1(t)$ 平移得到的，从而转化为判定：若 $e _1(t)\rightarrow r _1(t)$，是否有 $e _2(t)\rightarrow r _2(t)$。
@@ -65,38 +91,54 @@
 &emsp;&emsp;这种错误做法看起来有点像是循环论证，但是它却能够正确地判断 $r(t)=\varepsilon(t)e(t)$ 不具备时不变性。所以花了一个下午的时间总结出时不变性的正确判定方法，并且特意强调，以免以后再落入这个陷阱。
 </blockquote>
 
-**二、各种各样的响应**\
-**1.古典法**\
+### 各种各样的响应
+#### 古典法
 &emsp;&emsp;古典法依据微分方程的数学解形式来定义系统的不同响应。一个 $n$ 阶线性系统的微分方程可以用下面的式子来表示：
 $$\cfrac{\mathrm d^nr}{\mathrm dt^n}+a _{n-1}\cfrac{\mathrm d^{n-1}r}{\mathrm dt^{n-1}}+\cdots+a _1\cfrac{\mathrm dr}{\mathrm dt}+a _0r=b _m\cfrac{\mathrm d^me}{\mathrm dt^m}+b _{m-1}\cfrac{\mathrm d^{m-1}e}{\mathrm dt^{m-1}}+b _1\cfrac{\mathrm de}{\mathrm dt}+b _0e\tag{1.1}$$
 
-&emsp;&emsp;这个微分方程对应的齐次方程的通解（通过初值条件确定待定系数），被称作系统的**自然响应（自由响应）**，记作 $r _h(t)$。微分方程对应的特解（也通过初值条件确定了待定系数）被称作系统的**受迫响应**，记作 $r _p(t)$。\
-**2.近代时域分析法**\
-&emsp;&emsp;近代的时域分析法就把响应分为**零输入响应** $r _{zi}(t)$ 和**零状态响应** $r _{zs}(t)$。这一点同电路理论中的概念。
+&emsp;&emsp;这个微分方程对应的齐次方程的通解（通过初值条件确定待定系数），被称作系统的**自然响应（自由响应）**，记作 $r _h(t)$。微分方程对应的特解（也通过初值条件确定了待定系数）被称作系统的**受迫响应**，记作 $r _p(t)$。
+<blockquote>
+&emsp;&emsp;回顾一下高数里求解微分方程的过程，通解往往带有待定系数 $C _1,C _2\cdots$，但是特解是不带的。这就说明系统的自由响应 $r _h(t)$ 受系统初值的影响，但是受迫响应 $r _p(t)$ 不受影响。<br>
+&emsp;&emsp;同时，只有全解出来了，才能确定 $r _h(t)$ 的系数。因此 $r _h(t)$ 的求解会受到 $r _p(t)$ 的制约。
+</blockquote>
 
+#### 近代时域分析法
+&emsp;&emsp;近代的时域分析法就把响应分为**零输入响应** $r _{zi}(t)$ 和**零状态响应** $r _{zs}(t)$。这一点同电路理论中的概念。\
 &emsp;&emsp;这些响应与全响应 $r(t)$ 之间的关系是：
 $$r _h(t)=r _{zi}(t)+r _{zs}(t)=r _h(t)+r _p(t)\tag{1.2}$$
 
 ## $Chapter2$&emsp;连续时间系统的时域分析
-**一、卷积积分**\
+### 基于冲激函数的信号分解
 &emsp;&emsp;这一章首先证明了下面的公式：
 $$f(t)=\int _0^tf(\tau)\delta(t-\tau)\mathrm d\tau=\int _{-\infty}^{+\infty}f(\tau)\delta(t-\tau)\mathrm d\tau\tag{2.1}$$
 
-&emsp;&emsp;这说明一个信号可以分解成多个多个冲击性信号的积分。\
-&emsp;&emsp;记一个系统的单位冲击响应为 $h(t)$ ，即 $\delta(t)\rightarrow h(t)$。由于线性系统的时不变性、齐次性和叠加性，可得 $\displaystyle\int _0^te(t)\delta(t-\tau)\mathrm d\tau\rightarrow \int _0^te(t)h(t-\tau)\mathrm d\tau$。\
-&emsp;&emsp;因此，激励 $e(t)$ 时，系统的响应为
-$$r(t) = \int _0^te(t)h(t-\tau)\mathrm d\tau\tag{2.2}$$
-
-&emsp;&emsp;式 $(2.2)$ 就是**卷积积分**。注意这里求出来的 $r(t)$ 是**零状态响应**，因为推导过程中用到的 $h(t)$ 是零状态响应。
-
 <blockquote>
-&emsp;&emsp;<strong>冲激响应</strong>是激励为 $\delta(t)$ 的<strong>零状态响应</strong>。如果可以知道一个系统的单位冲击响应 $h(t)$，根据式 $(2.2)$ 可以直接从激励得到响应，而不需要知道系统的其它细节。
+&emsp;&emsp;式 $(2.1)$ 在书上是通过极限逼近的思想得到的，当然也可以直接利用冲激函数的筛分特性得到。
 </blockquote>
 
-**二、卷积的性质**\
+&emsp;&emsp;这说明一个信号可以分解成多个多个冲击信号的积分。
+### 卷积积分
+#### 卷积积分引出
+&emsp;&emsp;基于式 $(2.1)$，推导出了一个通过 $e(t)$ 迅速求得 $r(t)$ 的有效办法。记一个系统的单位冲击响应为 $h(t)$ ，即 $\delta(t)\rightarrow h(t)$。由于<st>线性系统</st>的时不变性、齐次性和叠加性，可得 $$\displaystyle\int _0^te(t)\delta(t-\tau)\mathrm d\tau\rightarrow \int _0^te(t)h(t-\tau)\mathrm d\tau\tag {2.2a}$$
+
+<blockquote>&emsp;&emsp;$h(t)$ 是激励为单位冲激函数 $\delta(t)$ 的<strong>零状态响应</strong>，这是 $h(t)$ 的定义。上段文字中“线性系统”四个字标红，因为含有初始值（初始状态）的系统从定义上来说并不是线性系统。<br>
+&emsp;&emsp;基于这两个原因，不难理解后文中 $(2.2\mathrm b)$ 求得的 $r(t)$ 只是零状态响应。
+</blockquote>
+
+&emsp;&emsp;根据式 $(2.1)$ 知，式 $(2.2\mathrm a)$ 的左边就是 $e(t)$。那么式 $(2.2\mathrm a)$ 的右边当然就是对应的 $r(t)$ 了。因此，激励为 $e(t)$ 时，系统的响应可以通过下式求得：
+$$r(t) = \int _0^te(t)h(t-\tau)\mathrm d\tau\tag{2.2b}$$
+
+&emsp;&emsp;式 $(2.2\mathrm b)$ 就是**卷积积分**，且这里求出来的 $r(t)$ 是**零状态响应**。
+
+<blockquote>
+&emsp;&emsp;如果可以知道一个系统的单位冲击响应 $h(t)$，根据式 $(2.2)$ 可以直接从激励得到响应，而不需要知道系统的其它细节。
+</blockquote>
+
+#### 卷积的定义
 &emsp;&emsp;卷积运算是一种抽象出来的运算，它的定义是：
 $$f(t) * g(t)=\int_{-\infty}^{+\infty}f(\tau)g(t-\tau)\mathrm d\tau\tag{2.3}$$
 
+#### 卷积的性质
 &emsp;&emsp;和很多运算类似，卷积具有**交换律**、对加减法的**分配律**以及**结合律**。对于卷积结果进行微积分运算，有下列结论成立：
 $$\cfrac{\mathrm d}{\mathrm dt}[u(t) * v(t)]=u(t) * \cfrac{\mathrm dv(t)}{\mathrm dt}=\cfrac{\mathrm du(t)}{\mathrm dt} * v(t)\tag{2.4}$$
 
@@ -111,17 +153,77 @@ $$\int_{-\infty}^t[u(x) * v(x)]\mathrm dx=u(t) * \left[\int_{-\infty}^tv(x)\math
 &emsp;&emsp;特别地，根据式子 $(2.4)(2.5)$，可以得到一个比较有用的结果：
 $$u(t) * v(t)=\cfrac{\mathrm du(t)}{\mathrm dt} * \int_{-\infty}^tv(x)\mathrm d x\tag{2.6}$$
 
-&emsp;&emsp;上式还能互换 $u(t),v(t)$ 的地位，这里略去不写。式 $(2.6)$ 的使用条件是 $\displaystyle\int_{-\infty}^tv(x)\mathrm dx$ 存在，且<st> $\lim\limits_{x\rightarrow -\infty}u(t) * v(t)=0$</st>。
-<blockquote>
-&emsp;&emsp;这是因为式 $(2.6)$ 可以看作是对式子 $u(t) * v(t)=u(t) * v(t)$ 两边分别运用 $(2.4)(2.5)$ 得到的，只不过等号右边选择了不同的函数进行操作。需要注意的是，左边在进行微分、积分后要能够得到原来的式子。如果先进行微分，那么：
+&emsp;&emsp;上式还能互换 $u(t),v(t)$ 的地位，这里略去不写。式 $(2.6)$ 的使用条件是 $\displaystyle\int_{-\infty}^tv(x)\mathrm dx$ 存在，且<st> $\lim\limits_{t\rightarrow -\infty}u(t) * v(t)=0$</st>。红色的式子也可以等价地表述为 $u(t) * v(t)=\displaystyle\int_{-\infty}^t[u(x) * v(x)]'\mathrm dx$。\
+&emsp;&emsp;这是因为式 $(2.6)$ 可以看作是对式子 $u(t) * v(t)=u(t) * v(t)$ 两边分别运用 $(2.4)(2.5)$ 得到的，只不过等号右边选择了不同的函数进行操作。需要注意的是，左边的 $u(t) * v(t)$ 在进行微分、积分后要能够还原出 $u(t) * v(t)$。如果先进行微分，那么：
 $$\int_{-\infty}^t\cfrac{\mathrm d[u(x) * v(x)]}{\mathrm dx}\mathrm dt=u(t) * v(t)-u(-\infty) * v(-\infty)\tag{2.7}$$
-&emsp;&emsp;显然只有满足 $\lim\limits_{x\rightarrow -\infty}u(t) * v(t)=0$，左边才能复原。如果先进行积分，那么首先就要保证 $\displaystyle\int_{-\infty}^t[u(x) * v(x)]\mathrm dx$ 存在，显然也需要满足 $\lim\limits_{x\rightarrow -\infty}u(t) * v(t)=0$，否则反常积分不收敛。<br>
-&emsp;&emsp;同时，有的地方说 $(2.6)$ 成立的条件是 $u(t)=\displaystyle\int_{-\infty}^tu'(x)\mathrm dx$，也就是 $\lim\limits_{x\rightarrow -\infty}u(x)=0$，这个条件是不准确的，至少其必要性不成立。<br>
+
+&emsp;&emsp;显然只有满足 $\lim\limits_{x\rightarrow -\infty}u(t) * v(t)=0$，左边才能复原。如果先进行积分，那么首先就要保证 $\displaystyle\int_{-\infty}^t[u(x) * v(x)]\mathrm dx$ 存在，显然也需要满足 $\lim\limits_{x\rightarrow -\infty}u(t) * v(t)=0$，否则反常积分不收敛。
+<blockquote>
+&emsp;&emsp;同时，有的地方说 $(2.6)$ 成立的条件是 $u(t)=\displaystyle\int_{-\infty}^tu'(x)\mathrm dx$，也就是 $\lim\limits_{x\rightarrow -\infty}u(x)=0$，这个条件仅仅是充分条件，其必要性不成立。<br>
 &emsp;&emsp;考虑 $u(t)=1+\varepsilon(t),v(t)=\left[\mathrm e^{-t}-\cfrac{1}{(t+1)^2}\right]\varepsilon(t)$，虽然不满足 $\lim\limits_{x\rightarrow -\infty}u(x)=0$，但是依然可以使用 $(2.6)$ 式：
 $$u(t) * v(t)=\delta(t) * \int_{-\infty}^t\left[\mathrm e^{-x}-\cfrac{1}{(x+1)^2}\right]\varepsilon(x)\mathrm dx=\varepsilon(t)\int_0^t\left[\mathrm e^{-x}-\cfrac{1}{(x+1)^2}\right]\mathrm dx=\left(\cfrac{1}{t+1}-\mathrm e^{-t}\right)\varepsilon(t)\tag{2.8}$$
 </blockquote>
 
 &emsp;&emsp;除此之外，还有一个延时的性质：若 $f(t)=f _1(t) * f _2(t)$，则有 $f(t-t _1-t _2)=f _1(t-t _1) * f _2(t-t _2)$。
+
+### 系统响应的时域求解
+&emsp;&emsp;正如所提到的[第一章](#各种各样的响应)中所提到的那样，一个线性系统至少包含 $4$ 种类型的响应，其中又包含一种特殊的**单位冲击响应**。下面归纳一下这些响应的求解方法。
+
+#### 单位冲激响应 $h(t)$
+<blockquote>
+&emsp;&emsp;单位冲激响应的求解，书上给出了一种解法，老师给出了一种解法。<br>
+&emsp;&emsp;书上给出的解法叫做<strong>海维赛德部分因式分解法</strong>。这种方法很好，也非常容易掌握，但是老师没讲。这是因为该方法基于拉普拉斯变换，并且使用起来和拉普拉斯变换法高度相似。所以只需要掌握拉普拉斯变换就好了。<br>
+&emsp;&emsp;因此我们在这一章需要学会老师的解法。
+</blockquote>
+
+&emsp;&emsp;单位冲激响应其实是 $0^+$ 系统的零输入响应。这给了我们求解 $h(t)$ 的思路：
+- 系统在 $0^-$ 时刻是零状态的，即 $r^{(n)}(0^-)=0$。在 $t=0$ 时刻忽然到来的激励 $\delta(t)$ 改变了系统的状态，使得 $r^{(n)}(0^+)\neq 0$。
+- 系统在 $t\geq 0^+$ 时按照零输入响应的方式求解——列微分方程，根据初值 $r^{(n)}(0^+)$ 求取微分方程的**通解** $h(t)$。
+
+&emsp;&emsp;求微分方程的通解自然是容易的，关键在如何求系统的初值 $r^{(n)}(0^+)$ 。这个初值可以用**冲击平衡法**求取。\
+&emsp;&emsp;在引入奇异函数后，我们可以将常见信号大致分为以下 $2$ 类：**连续函数**，**非连续的连续函数的导数**（后文简称非连续函数）。其中非连续函数可以写成 $\varepsilon^{(n)}(t)(n\geq 0)$ 或其组合的形式，其中最大的 $n$ 值为其**间断阶**（这是为了方便理解编造的术语）。比如 $x(t)=\varepsilon(t)+\delta'(t)$ 的间断阶为 $2$。
+<blockquote>
+&emsp;&emsp;考虑一个连续函数 $x(t)$ 在某个点 $t _0$ 处很“尖锐”，也就是 $x(t)$ 在 $t _0$ 两侧的导数值不相等，那么 $x'(t)$ 将会成为<strong>非连续函数</strong>并出现阶跃项。若再求导，将依次出现冲击项、冲击偶项，间断阶以 $1$ 为步长不断升高……<br>&emsp;&emsp;当然了，也有一些函数不属于上面 $2$ 类中的任何一类，比如 Dirichlet 函数那样的，但这种函数无法在实际信号中实现，故不考虑这些函数。
+</blockquote>
+
+&emsp;&emsp;<strong>冲击平衡法的思想就是令微分方程中 $r(t)$ 的最高阶导数项是一个非连续函数，且其间断阶等于方程中非 $r(t)$ 的最高的间断阶，利用待定系数法求解。</strong>该思想还能用来求单位阶跃响应，单位冲击偶响应等。\
+&emsp;&emsp;用一个例子来说明，有下面的微分方程：
+$$i''(t)+6i'(t)+8i(t)=\delta'(t)\tag{2.9}$$
+
+&emsp;&emsp;其中 $i(t)$ 的最高导数项是 $i''(t)$，方程中最高间断阶是 $\delta'(t)$ 的 $2$，那么就令 $i''(t)$ 的间断阶是 $2$，从而 $i''(t)$ 有下面的形式：
+$$i''(t)=a\delta'(t)+b\delta(t)+c\varepsilon(t)+\xi(t)\tag{2.10}$$
+
+&emsp;&emsp;其中 $a,b,c$ 都是待定系数，$\xi(t)$ 是连续函数，且 $t<0$ 时 $\xi(t)=0$。将 $(2.10)$ 代入 $(2.9)$ 中，**间断阶相等的非连续项一一对应**，有：
+$$\begin{cases}a\delta'(t)=\delta'(t)\\\\
+(b+6a)\delta(t)=0\\\\
+(c+6b+8a)\varepsilon(t)=0\end{cases}\tag{2.11}$$
+
+&emsp;&emsp;从而解得 $a=1,b=-6,c=28$。**最后使得函数在 $t=0$ 左右跳变的只有阶跃函数 $\varepsilon(t)$**，这样就有 $i''(0^+)=i''(0^-)+c=1$。根据 $(2.10)$ 还可以知道 $i'(t)$ 中含有阶跃项 $b\varepsilon(t)$，$i(t)$ 中含有阶跃项 $a\varepsilon(t)$（你可以从下面看到阶跃项不止我说的这些，我没提到的阶跃项实际上是连续函数），从而得到 $i'(0^+)=b=-6,i(0^+)=a=1$。
+<blockquote>
+&emsp;&emsp;在代入 $i''(t)$ 表达式得到 $(2.11)$ 式的过程中，我们省略了将连续项对应的步骤。其实连续项也是可以自洽的。为方便描述令 $\eta(t)=\displaystyle\int _{-\infty}^t\mathrm du\int _{-\infty}^u\xi(v)\mathrm dv$，从而 $\xi(t)=\eta''(t)$。考虑到 $i''(0^-)=i'(0^-)=i(0^-)=0$，有：
+$$\begin{cases}i'(t)=a\delta(t)+(b+ct)\varepsilon(t)+\eta'(t)\\
+i(t)=\left(a+bt+\cfrac{t^2}{2}\right)\varepsilon(t)+\eta(t)\end{cases}\tag{2.12}$$
+&emsp;&emsp;把连续项拿出来是
+$$\eta''(t)+6\eta'(t)+8\eta(t)=-(6ct+8bt+4t^2)\varepsilon(t)\tag{2.13}$$
+&emsp;&emsp;相当于 $\eta(t)$ 是激励为 $-(6ct+8bt+4t^2)\varepsilon(t)$ 时的零状态响应，可以用微积分的常规方法求解。
+</blockquote>
+
+#### 三对响应的求解及其关系
+&emsp;&emsp;这里涉及到的三对响应分别是：\
+$\bigstar$&emsp;**零输入响应与零状态响应**\
+&emsp;&emsp;在时域上，这两个响应都可以单独地通过系统的微分方程求得。特别地，零状态响应还可以由式 $(2.2)$ 卷积求得。\
+&emsp;&emsp;从这一对响应出发，可以直接得到后两对响应。\
+$\bigstar$&emsp;**自由响应与受迫响应**\
+&emsp;&emsp;在时域上，这两个响应也是可以单独地通过系统的微分方程求得。特点是自由响应对应系统的特征频率，受迫响应对应非特征频率。
+<blockquote>
+&emsp;&emsp;自由响应、受迫响应的频率特点使得它们可以很好地从全响应中区分开来。例如给出一个系统的微分方程是 $u'(t)+u=e(t)$，全响应是 $u(t)=\left(1+\cfrac{1}{2}\mathrm e^{-t}-\cfrac{1}{2}\mathrm e^{-3t}\right)\varepsilon(t)$。可以发现系统微分方程具有特征根 $\lambda=-1$，从而全响应中任何与 $\mathrm e^{-t}\varepsilon(t)$ 线性相关的都是自由响应，非线性相关的都是受迫响应。因此不难得到自由响应 $u _h(t)=\cfrac{1}{2}\mathrm e^{-t}\varepsilon(t)$，受迫响应 $u _p(t)=\left(1-\cfrac{1}{2}\mathrm e^{-3t}\right)\varepsilon(t)$。
+</blockquote>
+
+$\bigstar$&emsp;**瞬态响应与稳态响应**\
+&emsp;&emsp;这个一般通过全响应直接分析得到的。如果没有给出全响应，要通过前面的某一对响应相加得到。如其名，随时间收敛到 $0$ 的是瞬态响应，否则就是稳态响应。
+
+&emsp;&emsp;上面提到的这些相应的关系是：
+<div align="center"><img src="responce.svg" width="30%"></img></div>
 
 ## $Chapter3$&emsp;连续信号的正交分解
 
@@ -325,7 +427,7 @@ f(t)=\displaystyle\left[\cfrac{1}{2\pi\mathrm j}\int _{\sigma-\mathrm j\infty}^{
 $$f(t)=\mathscr L^{-1}\left\lbrace\cfrac{1+s}{s^2}\right\rbrace=\mathscr L^{-1}\left\lbrace\cfrac{1}{s^2}\right\rbrace+\mathscr L^{-1}\left\lbrace\cfrac{1}{s}\right\rbrace=(1+t)\varepsilon(t)\tag{5.4}$$ 
 </blockquote>
 
-**三、拉普拉斯变换的性质**
+**三、拉普拉斯变换的性质**\
 &emsp;&emsp;拉普拉斯变换是通过傅里叶变换得到的，所以很多性质都可以参考傅里叶变换。应用于连续时间系统的分析，拉普拉斯主要有两个性质和傅里叶变换中稍有区别：\
 **1.时域微分性质**\
 &emsp;&emsp;时域微分能够计入初始值，这是单边傅里叶变换 $(5.3)$ 的特性决定的：
@@ -334,7 +436,7 @@ $$\mathscr L\left\lbrace\cfrac{\mathrm d^nf(t)}{\mathrm dt}\right\rbrace=s^nF(s)
 &emsp;&emsp;$n$ 阶微分需要 $n$ 个初始值。因此已知初始值，可以用拉普拉斯变换来求系统的全响应。\
 **2.时域积分性质**\
 &emsp;&emsp;一般拉普拉斯变换处理的都是 $t=0$ 开始的有始信号 $f(t)$，因而 $t<0^-$ 时 $f(t)=0$。对于这样的 $f(t)$，满足下面的积分性质：
-$$\mathscr L\left\lbrace\int _{-\infty}^tf(\tau)\mathrm d\tau=\cfrac{F(s)}{s}\right\rbrace\tag{5.6}$$
+$$\mathscr L\left\lbrace\int _{-\infty}^tf(\tau)\mathrm d\tau\right\rbrace=\cfrac{F(s)}{s}\tag{5.6}$$
 
 ## $Chapter6$&emsp;连续时间系统的系统函数
 &emsp;&emsp;这一章主要涉及到系统函数的**极零图**和系统**稳定性**。系统函数 $H(s)=\cfrac{N(s)}{D(s)}$，使得 $N(s)=0$ 的根称为**零点**，使得 $D(s)=0$ 的根称为**极点**。将极点（用×）和零点（用○）在复平面（对拉普拉斯变换而言应该说 $s$ 平面更合适）中标出来，就得到系统的极零图。\
