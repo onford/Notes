@@ -26,7 +26,7 @@ const tocList = () => {
     const ele = document.querySelector(`.container #${v.id}`);
     if (!btn || !ele) return;
     btn.addEventListener("click", () => {
-      window.scrollTo({ top: ele.offsetTop - 80, behavior: "smooth" });
+      document.getElementById("114514").contentWindow.scrollTo({ top: ele.offsetTop - 80, behavior: "smooth" });
     })
   })
 
